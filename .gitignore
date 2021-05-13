@@ -1,3 +1,8 @@
+# Built application files
+*.apk
+*.aab
+
+# idea files
 *.iml
 .gradle
 /local.properties
@@ -7,7 +12,23 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
-.DS_Store
+/.idea/tasks.xml
+/.idea/gradle.xml
+/.idea/dictionaries
+/.idea/compiler.xml
+/.idea/jarRepositories.xml
+/.idea/misc.xml
+/.idea/codeStyles/Project.xml
+/.idea/codeStyles/codeStyleConfig.xml
+
+# Version control
+vcs.xml
+
+# Others
 /build
-/captures
 .externalNativeBuild
+.gradle/
+build/
+
+# Mac files
+.DS_Store
