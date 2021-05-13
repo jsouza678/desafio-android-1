@@ -1,8 +1,8 @@
-package com.picpay.desafio.android.di
+package com.picpay.desafio.android.data.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.picpay.desafio.android.PicPayService
+import com.picpay.desafio.android.data.contacts.data.remote.PicPayService
 import com.picpay.desafio.android.utils.Constants.BASE_URL
 import com.picpay.desafio.android.utils.Constants.DEFAULT_TIMEOUT
 import org.koin.dsl.module

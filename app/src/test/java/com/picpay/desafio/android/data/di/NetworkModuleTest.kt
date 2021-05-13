@@ -1,7 +1,7 @@
-package com.picpay.desafio.android.di
+package com.picpay.desafio.android.data.di
 
 import com.google.gson.Gson
-import com.picpay.desafio.android.PicPayService
+import com.picpay.desafio.android.data.contacts.data.remote.PicPayService
 import com.picpay.desafio.android.utils.Constants
 import org.junit.After
 import org.junit.Before

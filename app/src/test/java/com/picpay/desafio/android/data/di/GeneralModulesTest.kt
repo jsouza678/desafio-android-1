@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.di
+package com.picpay.desafio.android.data.di
 
 import org.junit.After
 import org.junit.Test

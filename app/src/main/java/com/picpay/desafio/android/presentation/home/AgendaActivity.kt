@@ -1,4 +1,4 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.presentation.home
 
 import android.view.View
 import android.widget.ProgressBar
@@ -6,13 +6,17 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.picpay.desafio.android.R
+import com.picpay.desafio.android.UserListAdapter
+import com.picpay.desafio.android.data.contacts.data.remote.PicPayService
+import com.picpay.desafio.android.domain.entity.User
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(R.layout.activity_main), KoinComponent {
+class AgendaActivity : AppCompatActivity(R.layout.activity_main), KoinComponent {
 
     private val service: PicPayService by inject()
     private lateinit var recyclerView: RecyclerView
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), KoinComponent {
                     progressBar.visibility = View.GONE
                     recyclerView.visibility = View.GONE
 
-                    Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT)
+                    Toast.makeText(this@AgendaActivity, message, Toast.LENGTH_SHORT)
                         .show()
                 }
 
