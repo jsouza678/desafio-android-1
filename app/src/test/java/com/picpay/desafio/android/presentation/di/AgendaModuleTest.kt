@@ -28,7 +28,12 @@ class AgendaModuleTest: KoinTest {
         MockitoAnnotations.initMocks(this)
         startKoin {
             androidContext(context)
-            modules(networkModule, agendaModule, contactsModule, databaseModule)
+            modules(
+                networkModule,
+                agendaModule,
+                contactsModule,
+                databaseModule
+            )
         }
     }
 
