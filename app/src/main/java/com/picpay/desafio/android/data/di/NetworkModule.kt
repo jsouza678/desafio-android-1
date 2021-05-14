@@ -1,12 +1,13 @@
-package com.picpay.desafio.android.di
+package com.picpay.desafio.android.data.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.picpay.desafio.android.PicPayService
+import com.picpay.desafio.android.data.contacts.data.remote.PicPayService
 import com.picpay.desafio.android.utils.Constants.BASE_URL
 import com.picpay.desafio.android.utils.Constants.DEFAULT_TIMEOUT
-import org.koin.dsl.module
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
+import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
