@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.data.contacts.data.remote.responses
+package com.picpay.desafio.android.data.contacts.data.remote.response
 
 data class UserResponse(
     val id: Int,

@@ -18,7 +18,7 @@ import java.io.IOException
 fun <R, D> launchAsyncFunction(
     blockToRun: suspend () -> Response<R>,
     coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
-    mapFunction: (R) -> D
+    mapFunction: suspend (R) -> D
 ): Flow<ResponseHandler<D>> = flow<ResponseHandler<D>> {
     runCatching {
         withContext(coroutineDispatcher) { blockToRun.invoke() }

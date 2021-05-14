@@ -1,45 +1,59 @@
 package com.picpay.desafio.android.data.contacts.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.spy
-import com.nhaarman.mockitokotlin2.whenever
+import com.nhaarman.mockitokotlin2.*
+import com.picpay.desafio.android.data.contacts.data.local.dao.ContactsDao
+import com.picpay.desafio.android.data.contacts.data.local.entity.UserLocal
 import com.picpay.desafio.android.data.contacts.data.remote.PicPayService
-import com.picpay.desafio.android.data.contacts.data.remote.responses.UserResponse
+import com.picpay.desafio.android.data.contacts.data.remote.response.UserResponse
 import com.picpay.desafio.android.data.di.contactsModule
+import com.picpay.desafio.android.data.di.databaseModule
 import com.picpay.desafio.android.data.di.networkModule
 import com.picpay.desafio.android.domain.entity.ApiError
 import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
 import com.picpay.desafio.android.domain.repository.AgendaRepository
 import com.picpay.desafio.android.extensions.ErrorHandler
 import com.picpay.desafio.android.utils.Constants
+import com.picpay.desafio.android.utils.FakeModels.EMPTY_CONTACTS_CALL
+import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_LOCAL
+import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_RESPONSE
+import com.picpay.desafio.android.utils.FakeModels.FAKE_EMPTY_CONTACTS
+import com.picpay.desafio.android.utils.FakeModels.SUCCESS_CONTACTS_CALL
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertSame
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
+import org.mockito.Mockito.verify
 import retrofit2.HttpException
 import retrofit2.Response
 
-class AgendaRepositoryTest: KoinTest {
+class AgendaRepositoryTest : KoinTest {
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
     private val service: PicPayService = mock()
-    private val agendaRepository: AgendaRepository = spy(AgendaRepositoryImpl(service))
+    private val dao: ContactsDao = mock()
+    private val agendaRepository: AgendaRepository = spy(
+        AgendaRepositoryImpl(
+            service = service,
+            dao = dao
+        )
+    )
 
     @Before
     fun setup() {
         startKoin {
             modules(
+                databaseModule,
                 networkModule,
                 contactsModule
             )
@@ -52,111 +66,102 @@ class AgendaRepositoryTest: KoinTest {
     }
 
     @Test
-    fun `GIVEN contact success response WHEN api call is made THEN should return loading and then success`() = runBlocking {
-        val response = Response.success(FAKE_CONTACTS_RESPONSE)
+    fun `GIVEN empty contact list WHEN query is made THEN should fetch data from api and return loading and then success`() =
+        runBlocking {
+            val listReturned = emptyList<UserLocal>()
+            val response = Response.success(FAKE_CONTACTS_RESPONSE)
 
-        whenever(service.getUsers()).thenReturn(response)
+            whenever(dao.getContacts()).thenReturn(listReturned)
+            whenever(service.getUsers()).thenReturn(response)
 
-        val flowResponse = agendaRepository.getContacts().toList()
+            agendaRepository.fetchContacts()
 
-        val loadingState = flowResponse.first()
-        val dataState = flowResponse.last()
+            val flowResponse = agendaRepository.getContacts().toList()
+            val loadingState = flowResponse.first()
+            val dataState = flowResponse.last()
 
-        assertSame(loadingState, ResponseHandler.Loading)
-        assertEquals(dataState, SUCCESS_CONTACTS_CALL)
+            assertSame(loadingState, ResponseHandler.Loading)
+            assertEquals(dataState, SUCCESS_CONTACTS_CALL)
+        }
+
+    @Test
+    fun `GIVEN empty contact list WHEN query is made THEN should not do the request`() {
+
+        val listReturned = FAKE_CONTACTS_LOCAL
+
+        whenever(dao.getContacts()).thenReturn(listReturned)
+
+        runBlocking {
+            agendaRepository.fetchContacts()
+
+            verify(dao, atLeastOnce()).getContacts()
+            verify(service, never()).getUsers()
+        }
     }
 
     @Test
-    fun `GIVEN contact error response WHEN api call is made THEN should return loading and then generic error`() = runBlocking {
-        val errorResponse: Response<UserResponse> = GENERIC_ERROR
-        val exceptionResponse = HttpException(errorResponse)
+    fun `GIVEN contact success response WHEN api call is made THEN should return loading and then success`() =
+        runBlocking {
+            val response = Response.success(FAKE_CONTACTS_RESPONSE)
 
-        whenever(service.getUsers()).thenThrow(exceptionResponse)
+            whenever(service.getUsers()).thenReturn(response)
 
-        val flowResponse = agendaRepository.getContacts().toList()
+            val flowResponse = agendaRepository.getContacts().toList()
+            val loadingState = flowResponse.first()
+            val dataState = flowResponse.last()
 
-        val loadingState = flowResponse.first()
-        val errorState = flowResponse.last()
-
-        assertSame(loadingState, ResponseHandler.Loading)
-        assertEquals(errorState, GENERIC_ERROR_RESPONSE)
-    }
-
-    @Test
-    fun `GIVEN contact error response WHEN api call is made THEN should return loading and then an error that could not be parsed`() = runBlocking {
-        val errorResponse: Response<UserResponse> = GENERIC_UNEXPECTED_ERROR
-        val exceptionResponse = HttpException(errorResponse)
-
-        whenever(service.getUsers()).thenThrow(exceptionResponse)
-
-        val flowResponse = agendaRepository.getContacts().toList()
-
-        val loadingState = flowResponse.first()
-        val errorState = flowResponse.last()
-
-        assertSame(loadingState, ResponseHandler.Loading)
-        assertEquals(errorState, GENERIC_UNEXPECTED_ERROR_RESPONSE)
-    }
+            assertSame(loadingState, ResponseHandler.Loading)
+            assertEquals(dataState, SUCCESS_CONTACTS_CALL)
+        }
 
     @Test
-    fun `GIVEN contact error response WHEN api call is made THEN should return loading and then an error that could not be empty`() = runBlocking {
-        val response = Response.success(FAKE_EMPTY_CONTACTS)
+    fun `GIVEN contact error response WHEN api call is made THEN should return loading and then generic error`() =
+        runBlocking {
+            val errorResponse: Response<UserResponse> = GENERIC_ERROR
+            val exceptionResponse = HttpException(errorResponse)
 
-        whenever(service.getUsers()).thenReturn(response)
+            whenever(service.getUsers()).thenThrow(exceptionResponse)
 
-        val flowResponse = agendaRepository.getContacts().toList()
+            val flowResponse = agendaRepository.getContacts().toList()
+            val loadingState = flowResponse.first()
+            val errorState = flowResponse.last()
 
-        val loadingState = flowResponse.first()
-        val dataState = flowResponse.last()
+            assertSame(loadingState, ResponseHandler.Loading)
+            assertEquals(errorState, GENERIC_ERROR_RESPONSE)
+        }
 
-        assertSame(loadingState, ResponseHandler.Loading)
-        assertEquals(dataState, EMPTY_CONTACTS_CALL)
-    }
+    @Test
+    fun `GIVEN contact error response WHEN api call is made THEN should return loading and then an error that could not be parsed`() =
+        runBlocking {
+            val errorResponse: Response<UserResponse> = GENERIC_UNEXPECTED_ERROR
+            val exceptionResponse = HttpException(errorResponse)
+
+            whenever(service.getUsers()).thenThrow(exceptionResponse)
+
+            val flowResponse = agendaRepository.getContacts().toList()
+            val loadingState = flowResponse.first()
+            val errorState = flowResponse.last()
+
+            assertSame(loadingState, ResponseHandler.Loading)
+            assertEquals(errorState, GENERIC_UNEXPECTED_ERROR_RESPONSE)
+        }
+
+    @Test
+    fun `GIVEN contact error response WHEN api call is made THEN should return loading and then an error that could not be empty`() =
+        runBlocking {
+            val response = Response.success(FAKE_EMPTY_CONTACTS)
+
+            whenever(service.getUsers()).thenReturn(response)
+
+            val flowResponse = agendaRepository.getContacts().toList()
+            val loadingState = flowResponse.first()
+            val dataState = flowResponse.last()
+
+            assertSame(loadingState, ResponseHandler.Loading)
+            assertEquals(dataState, EMPTY_CONTACTS_CALL)
+        }
 
     private companion object {
-        val FAKE_EMPTY_CONTACTS: List<UserResponse>? = null
-        val FAKE_CONTACTS_RESPONSE = listOf(
-            UserResponse(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            ),
-            UserResponse(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            ),
-            UserResponse(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            )
-        )
-        val FAKE_CONTACTS = listOf(
-            User(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            ),
-            User(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            ),
-            User(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            )
-        )
-        val SUCCESS_CONTACTS_CALL = ResponseHandler.Success(FAKE_CONTACTS)
-        val EMPTY_CONTACTS_CALL = ResponseHandler.Empty
         val GENERIC_ERROR: Response<UserResponse> = Response.error(
             404,
             "{\"message\":\"Api Generic Error\"}"
@@ -169,15 +174,17 @@ class AgendaRepositoryTest: KoinTest {
         )
         val GENERIC_ERROR_RESPONSE = ResponseHandler.Error(
             ApiError.HttpError(
-            code = 404,
-            message = Constants.GENERIC_NETWORK_ERROR,
-            exception = ErrorHandler().getErrorFromApi(HttpException(GENERIC_ERROR)).exception
-        ))
+                code = 404,
+                message = Constants.GENERIC_NETWORK_ERROR,
+                exception = ErrorHandler().getErrorFromApi(HttpException(GENERIC_ERROR)).exception
+            )
+        )
         val GENERIC_UNEXPECTED_ERROR_RESPONSE = ResponseHandler.Error(
             ApiError.HttpError(
-            code = 409,
-            message = Constants.DEFAULT_ERROR,
-            exception = ErrorHandler().getErrorFromApi(HttpException(GENERIC_UNEXPECTED_ERROR)).exception
-        ))
+                code = 409,
+                message = Constants.DEFAULT_ERROR,
+                exception = ErrorHandler().getErrorFromApi(HttpException(GENERIC_UNEXPECTED_ERROR)).exception
+            )
+        )
     }
 }
