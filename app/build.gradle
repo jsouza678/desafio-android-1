@@ -38,6 +38,10 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = freeCompilerArgs + "-Xallow-result-return-type"
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
