@@ -3,15 +3,16 @@ package com.picpay.desafio.android.data.di
 import com.google.gson.Gson
 import com.picpay.desafio.android.data.contacts.data.remote.PicPayService
 import com.picpay.desafio.android.utils.Constants
+import kotlinx.coroutines.CoroutineDispatcher
+import okhttp3.OkHttpClient
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
+import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.inject
-import okhttp3.OkHttpClient
-import org.junit.Assert
-import org.junit.Test
 import retrofit2.Retrofit
 
 class NetworkModuleTest : KoinTest {

@@ -6,7 +6,7 @@ import com.picpay.desafio.android.domain.entity.User
 fun UserResponse.toDomainModel(): User =
     User(
         img = this.img,
-        name = this.name,
+        name = this.name ?: "Empty name",
         id = this.id,
-        username = this.username
+        username = this.username ?: "Empty username"
     )

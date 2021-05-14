@@ -2,29 +2,26 @@ package com.picpay.desafio.android.data.contacts.data.repository
 
 import com.picpay.desafio.android.data.contacts.data.mapper.toDomainModel
 import com.picpay.desafio.android.data.contacts.data.remote.PicPayService
+import com.picpay.desafio.android.data.contacts.data.remote.responses.UserResponse
 import com.picpay.desafio.android.domain.entity.ResponseHandler
 import com.picpay.desafio.android.domain.entity.User
 import com.picpay.desafio.android.domain.repository.AgendaRepository
 import com.picpay.desafio.android.extensions.launchAsyncFunction
-import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 
-class AgendaRepositoryImpl : AgendaRepository, KoinComponent {
-
-    private val service: PicPayService by inject()
-    private val coroutineDispatcher: CoroutineDispatcher by inject()
+class AgendaRepositoryImpl(private val service: PicPayService) : AgendaRepository {
 
     override suspend fun getContacts(): Flow<ResponseHandler<List<User>>> {
-        return launchAsyncFunction(
-            blockToRun = { service.getUsersNew() },
+
+        return launchAsyncFunction<List<UserResponse>, List<User>>(
+            blockToRun = { service.getUsers() },
             mapFunction = { responseList ->
                 responseList.map { userResponse ->
                     userResponse.toDomainModel()
                 }
             },
-            coroutineDispatcher = coroutineDispatcher
+            coroutineDispatcher = Dispatchers.IO
         )
     }
 }

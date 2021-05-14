@@ -12,6 +12,9 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
 
+/**
+ * R means Response, and D, Domain
+ */
 fun <R, D> launchAsyncFunction(
     blockToRun: suspend () -> Response<R>,
     coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
