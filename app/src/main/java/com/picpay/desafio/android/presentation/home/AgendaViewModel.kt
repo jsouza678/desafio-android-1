@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import com.picpay.desafio.android.base.BaseViewModel
 import com.picpay.desafio.android.domain.entity.ResponseHandler
 import com.picpay.desafio.android.domain.entity.User
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.desafio.android.domain.usecase.GetContactList
 import kotlinx.coroutines.flow.collect
 
-class AgendaViewModel(private val repository: AgendaRepository): BaseViewModel() {
+class AgendaViewModel(private val useCase: GetContactList): BaseViewModel() {
 
     private val contacts: MutableLiveData<ResponseHandler<List<User>>> = MutableLiveData()
 
@@ -20,9 +20,10 @@ class AgendaViewModel(private val repository: AgendaRepository): BaseViewModel()
 
     private fun getContactData() {
         launch {
-            repository.fetchContacts().collect {
-                if (it is ResponseHandler.Success && it.value.isEmpty()) contacts.postValue(ResponseHandler.Empty)
-                else contacts.postValue(it)
+            useCase.getContacts().collect {
+                if (it is ResponseHandler.Success && it.value.isEmpty()) {
+                    contacts.postValue(ResponseHandler.Empty)
+                } else contacts.postValue(it)
             }
         }
     }
