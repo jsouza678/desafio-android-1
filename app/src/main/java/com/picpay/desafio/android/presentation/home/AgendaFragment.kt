@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.base.BaseFragment
 import com.picpay.desafio.android.databinding.FragmentAgendaBinding
@@ -16,19 +16,30 @@ class AgendaFragment: BaseFragment<FragmentAgendaBinding>() {
     private val viewModel by viewModel<AgendaViewModel>()
     private lateinit var adapter: UserListAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.userListProgressBar.visibility = View.VISIBLE
         adapter = UserListAdapter()
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
+        setupView()
+        setupRecyclerView()
         setObservers()
     }
 
     override fun getViewBinding(): FragmentAgendaBinding {
         return FragmentAgendaBinding.inflate(layoutInflater)
+    }
+
+    private fun setupView() {
+        binding.userListProgressBar.visibility = View.VISIBLE
+    }
+
+    private fun setupRecyclerView() {
+        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+
+        binding.recyclerView.adapter = adapter
     }
 
     private fun setObservers() {
@@ -41,7 +52,8 @@ class AgendaFragment: BaseFragment<FragmentAgendaBinding>() {
                         adapter.users = it.value
                     }
 
-                    is ResponseHandler.Loading -> {}
+                    is ResponseHandler.Loading -> {
+                    }
 
                     is ResponseHandler.Error -> {
                         val message = getString(R.string.error)
