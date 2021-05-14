@@ -1,7 +1,8 @@
 package com.picpay.desafio.android.data.contacts.data.mapper
 
-import com.picpay.desafio.android.data.contacts.data.remote.responses.UserResponse
-import com.picpay.desafio.android.domain.entity.User
+import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS
+import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_LOCAL
+import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_RESPONSE
 import org.junit.Assert
 import org.junit.Test
 
@@ -18,46 +19,25 @@ class UserMapperTest {
         Assert.assertEquals(domainModelList, FAKE_CONTACTS)
     }
 
-    private companion object {
-        val FAKE_CONTACTS_RESPONSE = listOf(
-            UserResponse(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            ),
-            UserResponse(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            ),
-            UserResponse(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            )
-        )
-        val FAKE_CONTACTS = listOf(
-            User(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            ),
-            User(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            ),
-            User(
-                id = 1,
-                img = "",
-                name = "",
-                username = ""
-            )
-        )
+    @Test
+    fun `GIVEN an response contacts list WHEN the mapper function is called THEN it should return the correct database model`() {
+        val givenResponseList = FAKE_CONTACTS_RESPONSE
+
+        val domainModelList = givenResponseList.map {
+            it.toDatabaseModel()
+        }
+
+        Assert.assertEquals(domainModelList, FAKE_CONTACTS_LOCAL)
+    }
+
+    @Test
+    fun `GIVEN an database contacts list WHEN the mapper function is called THEN it should return the correct domain model`() {
+        val givenDatabaseList = FAKE_CONTACTS_LOCAL
+
+        val domainModelList = givenDatabaseList.map {
+            it.toDomainModel()
+        }
+
+        Assert.assertEquals(domainModelList, FAKE_CONTACTS)
     }
 }

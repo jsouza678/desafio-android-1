@@ -2,6 +2,7 @@ package com.picpay.desafio.android.base
 
 import android.app.Application
 import com.picpay.desafio.android.data.di.contactsModule
+import com.picpay.desafio.android.data.di.databaseModule
 import com.picpay.desafio.android.data.di.networkModule
 import com.picpay.desafio.android.presentation.di.agendaModule
 import org.koin.android.ext.koin.androidContext
@@ -21,6 +22,7 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 listOf(
+                    databaseModule,
                     networkModule,
                     agendaModule,
                     contactsModule

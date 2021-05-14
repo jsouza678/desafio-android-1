@@ -1,6 +1,6 @@
 package com.picpay.desafio.android.data.contacts.data.remote
 
-import com.picpay.desafio.android.data.contacts.data.remote.responses.UserResponse
+import com.picpay.desafio.android.data.contacts.data.remote.response.UserResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
