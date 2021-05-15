@@ -1,6 +1,6 @@
 package com.picpay.desafio.android.utils
 
-import com.picpay.desafio.android.domain.entity.User
+import com.picpay.domain.entity.User
 import java.util.*
 
 object MockProvider  {

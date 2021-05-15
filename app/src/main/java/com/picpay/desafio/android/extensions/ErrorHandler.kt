@@ -1,8 +1,8 @@
 package com.picpay.desafio.android.extensions
 
 import com.google.gson.Gson
-import com.picpay.desafio.android.domain.entity.ApiError
-import com.picpay.desafio.android.domain.entity.ErrorResponse
+import com.picpay.domain.entity.ApiError
+import com.picpay.domain.entity.ErrorResponse
 import com.picpay.desafio.android.utils.Constants.DEFAULT_ERROR
 import com.picpay.desafio.android.utils.Constants.GENERIC_NETWORK_ERROR
 import org.koin.core.component.KoinApiExtension

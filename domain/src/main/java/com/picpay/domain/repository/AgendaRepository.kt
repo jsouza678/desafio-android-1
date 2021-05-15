@@ -1,7 +1,7 @@
-package com.picpay.desafio.android.domain.repository
+package com.picpay.domain.repository
 
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.entity.User
 import kotlinx.coroutines.flow.Flow
 
 interface AgendaRepository {

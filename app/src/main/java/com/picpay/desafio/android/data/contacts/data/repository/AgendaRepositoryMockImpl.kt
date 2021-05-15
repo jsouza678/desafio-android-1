@@ -1,8 +1,8 @@
 package com.picpay.desafio.android.data.contacts.data.repository
 
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.entity.User
+import com.picpay.domain.repository.AgendaRepository
 import com.picpay.desafio.android.utils.MockProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow

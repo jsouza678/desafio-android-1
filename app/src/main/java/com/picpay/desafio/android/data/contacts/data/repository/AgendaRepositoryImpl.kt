@@ -7,9 +7,9 @@ import com.picpay.desafio.android.data.contacts.data.mapper.toDatabaseModel
 import com.picpay.desafio.android.data.contacts.data.mapper.toDomainModel
 import com.picpay.desafio.android.data.contacts.data.remote.PicPayService
 import com.picpay.desafio.android.data.contacts.data.remote.response.UserResponse
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.entity.User
+import com.picpay.domain.repository.AgendaRepository
 import com.picpay.desafio.android.extensions.launchAsyncFunction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

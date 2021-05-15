@@ -1,7 +1,9 @@
 package com.picpay.desafio.android.data.di
 
 import android.app.Application
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.desafio.android.BuildConfig
+import com.picpay.desafio.android.utils.Constants
+import com.picpay.domain.repository.AgendaRepository
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -29,6 +31,9 @@ class ContactsModuleTest : KoinTest {
                 databaseModule,
                 contactsModule,
                 networkModule
+            )
+            properties(
+                mapOf(Constants.BASE_URL to BuildConfig.API_BASE_URL)
             )
         }
     }

@@ -3,9 +3,9 @@ package com.picpay.desafio.android.presentation.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.picpay.desafio.android.base.BaseViewModel
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
-import com.picpay.desafio.android.domain.usecase.GetContactList
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.entity.User
+import com.picpay.domain.usecase.GetContactList
 import kotlinx.coroutines.flow.collect
 
 class AgendaViewModel(private val useCase: GetContactList): BaseViewModel() {

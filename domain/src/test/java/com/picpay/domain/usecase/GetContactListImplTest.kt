@@ -1,10 +1,8 @@
-package com.picpay.desafio.android.domain.usecase
+package com.picpay.domain.usecase
 
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.spy
 import com.picpay.domain.repository.AgendaRepository
-import com.picpay.domain.usecase.GetContactList
-import com.picpay.domain.usecase.GetContactListImpl
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.mockito.Mockito.verify
