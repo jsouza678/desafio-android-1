@@ -81,8 +81,8 @@ object Dependencies {
     object Network {
         private const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         private const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-        private const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
-        private const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
+        private const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
+        private const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okHttp}"
 
         val list = listOf(
             retrofit,
