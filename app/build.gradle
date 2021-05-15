@@ -29,6 +29,18 @@ android {
         }
     }
 
+    flavorDimensions "connectivity"
+
+    productFlavors {
+        mock {
+            dimension 'connectivity'
+        }
+
+        remote {
+            dimension 'connectivity'
+        }
+    }
+
     testOptions {
         unitTests.returnDefaultValues = true
     }
