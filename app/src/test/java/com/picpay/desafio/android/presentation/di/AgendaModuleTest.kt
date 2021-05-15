@@ -5,6 +5,8 @@ import com.picpay.desafio.android.data.di.contactsModule
 import com.picpay.desafio.android.data.di.databaseModule
 import com.picpay.desafio.android.data.di.networkModule
 import com.picpay.desafio.android.presentation.home.AgendaViewModel
+import kotlinx.coroutines.test.TestCoroutineDispatcher
+import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -22,6 +24,8 @@ class AgendaModuleTest: KoinTest {
     @Mock
     private lateinit var context: Application
     private val viewModel: AgendaViewModel by inject()
+    private val testDispatcher = TestCoroutineDispatcher()
+    private val testCoroutineScope = TestCoroutineScope(testDispatcher)
 
     @Before
     fun setup() {

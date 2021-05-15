@@ -1,7 +1,8 @@
 package com.picpay.desafio.android.data.di
 
 import android.app.Application
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.desafio.android.data.contacts.data.local.dao.ContactsDao
+import com.picpay.desafio.android.data.contacts.data.local.database.AgendaDatabase
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -14,9 +15,10 @@ import org.koin.test.inject
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class ContactsModuleTest : KoinTest {
+class DatabaseModuleTest: KoinTest {
 
-    private val agendaRepository: AgendaRepository by inject()
+    private val dao: ContactsDao by inject()
+    private val database: AgendaDatabase by inject()
     @Mock private lateinit var context: Application
 
     @Before
@@ -25,9 +27,7 @@ class ContactsModuleTest : KoinTest {
         startKoin {
             androidContext(context)
             modules(
-                databaseModule,
-                contactsModule,
-                networkModule
+                databaseModule
             )
         }
     }
@@ -38,7 +38,12 @@ class ContactsModuleTest : KoinTest {
     }
 
     @Test
-    fun `WHEN koin application is started it SHOULD instantiate repository`() {
-        Assert.assertNotNull(agendaRepository)
+    fun `WHEN koin application is started it SHOULD instantiate database`() {
+        Assert.assertNotNull(database)
+    }
+
+    @Test
+    fun `WHEN koin application is started it SHOULD instantiate dao`() {
+        Assert.assertNotNull(dao)
     }
 }

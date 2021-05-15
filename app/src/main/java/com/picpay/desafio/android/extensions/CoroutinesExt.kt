@@ -18,7 +18,8 @@ import java.io.IOException
 fun <R, D> launchAsyncFunction(
     blockToRun: suspend () -> Response<R>,
     coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
-    mapFunction: suspend (R) -> D
+    mapFunction: suspend (R) -> D,
+    onComplete: suspend () -> Unit
 ): Flow<ResponseHandler<D>> = flow<ResponseHandler<D>> {
     runCatching {
         withContext(coroutineDispatcher) { blockToRun.invoke() }
@@ -27,6 +28,7 @@ fun <R, D> launchAsyncFunction(
     }.onSuccess { apiResponse ->
         apiResponse.body()?.let { responseBody ->
             emit(ResponseHandler.Success(mapFunction.invoke(responseBody)))
+            onComplete.invoke()
         } ?: run {
             emit(ResponseHandler.Empty)
         }

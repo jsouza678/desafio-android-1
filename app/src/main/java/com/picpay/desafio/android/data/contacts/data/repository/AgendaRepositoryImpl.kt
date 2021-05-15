@@ -35,10 +35,13 @@ class AgendaRepositoryImpl(
                     userResponse.toDatabaseModel()
                 }
                 dao.insertContacts(*responseLocal.toTypedArray())
-
-                dao.getContacts().map { it.toDomainModel() }
+/*
+                dao.getContacts().map { it.toDomainModel() }*/
 
                 responseList.map { it.toDomainModel() }
+            },
+            onComplete = {
+                getCachedContacts()
             },
             coroutineDispatcher = Dispatchers.IO
         )
