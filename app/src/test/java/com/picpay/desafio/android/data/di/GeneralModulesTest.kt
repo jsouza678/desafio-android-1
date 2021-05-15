@@ -2,7 +2,9 @@ package com.picpay.desafio.android.data.di
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.picpay.desafio.android.BuildConfig
 import com.picpay.desafio.android.presentation.di.agendaModule
+import com.picpay.desafio.android.utils.Constants
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -44,6 +46,9 @@ class GeneralModulesTest: KoinTest {
         startKoin {
             androidContext(context)
             modules(koinModules)
+            properties(
+                mapOf(Constants.BASE_URL to BuildConfig.API_BASE_URL)
+            )
         }.checkModules()
     }
 }

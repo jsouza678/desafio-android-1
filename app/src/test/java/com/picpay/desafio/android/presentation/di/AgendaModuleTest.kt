@@ -1,10 +1,12 @@
 package com.picpay.desafio.android.presentation.di
 
 import android.app.Application
+import com.picpay.desafio.android.BuildConfig
 import com.picpay.desafio.android.data.di.contactsModule
 import com.picpay.desafio.android.data.di.databaseModule
 import com.picpay.desafio.android.data.di.networkModule
 import com.picpay.desafio.android.presentation.home.AgendaViewModel
+import com.picpay.desafio.android.utils.Constants
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -33,6 +35,9 @@ class AgendaModuleTest: KoinTest {
                 agendaModule,
                 contactsModule,
                 databaseModule
+            )
+            properties(
+                mapOf(Constants.BASE_URL to BuildConfig.API_BASE_URL)
             )
         }
     }

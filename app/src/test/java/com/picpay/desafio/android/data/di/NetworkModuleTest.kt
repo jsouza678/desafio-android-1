@@ -27,6 +27,9 @@ class NetworkModuleTest : KoinTest {
     fun setup() {
         startKoin {
             modules(networkModule)
+            properties(
+                mapOf(BASE_URL to BuildConfig.API_BASE_URL)
+            )
         }
     }
 
