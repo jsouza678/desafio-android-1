@@ -1,8 +1,8 @@
 package com.picpay.desafio.android.domain.entity
 
 data class User(
-    val img: String?,
-    val name: String,
     val id: Int,
+    val img: String,
+    val name: String,
     val username: String
 )

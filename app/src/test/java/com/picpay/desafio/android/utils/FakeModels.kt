@@ -11,61 +11,61 @@ object FakeModels {
     val FAKE_CONTACTS_RESPONSE = listOf(
         UserResponse(
             id = 1,
-            img = "",
-            name = "",
-            username = ""
+            img = "test",
+            name = "João Souza",
+            username = "Souza"
         ),
         UserResponse(
-            id = 1,
+            id = 2,
             img = "",
-            name = "",
-            username = ""
+            name = null,
+            username = null
         ),
         UserResponse(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 3,
+            img = " ",
+            name = null,
+            username = null
         )
     )
     val FAKE_CONTACTS_LOCAL = listOf(
         UserLocal(
             id = 1,
-            img = "",
-            name = "",
-            username = ""
+            img = "test",
+            name = "João Souza",
+            username = "Souza"
         ),
         UserLocal(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 2,
+            img = "Empty image url",
+            name = "Empty name",
+            username = "Empty username"
         ),
         UserLocal(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 3,
+            img = "Empty image url",
+            name = "Empty name",
+            username = "Empty username"
         )
     )
     val FAKE_CONTACTS = listOf(
         User(
             id = 1,
-            img = "",
-            name = "",
-            username = ""
+            img = "test",
+            name = "João Souza",
+            username = "Souza"
         ),
         User(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 2,
+            img = "Empty image url",
+            name = "Empty name",
+            username = "Empty username"
         ),
         User(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 3,
+            img = "Empty image url",
+            name = "Empty name",
+            username = "Empty username"
         )
     )
     val SUCCESS_CONTACTS_CALL = ResponseHandler.Success(FAKE_CONTACTS)
