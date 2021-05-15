@@ -22,10 +22,10 @@ class BaseApplication : Application() {
             androidContext(this@BaseApplication)
             modules(
                 listOf(
+                    contactsModule,
                     databaseModule,
                     networkModule,
-                    agendaModule,
-                    contactsModule
+                    agendaModule
                 )
             )
         }
