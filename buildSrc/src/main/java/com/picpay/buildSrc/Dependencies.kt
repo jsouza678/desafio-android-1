@@ -103,6 +103,7 @@ object Dependencies {
         private const val testRunner = "androidx.test:runner:${Versions.testRunner}"
         private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
         private const val coreKtx = "androidx.test:core-ktx:${Versions.coreKtxTest}"
+        private const val jUnitExt = "androidx.test.ext:junit-ktx:${Versions.jUnitExt}"
 
         val testList = listOf(
             jUnit,
@@ -117,7 +118,9 @@ object Dependencies {
         val androidTestList = listOf(
             testRunner,
             espressoCore,
-            coreKtx
+            coreKtx,
+            koinTest,
+            jUnitExt
         )
     }
 }

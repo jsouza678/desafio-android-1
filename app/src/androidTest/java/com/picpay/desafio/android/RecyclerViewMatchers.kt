@@ -26,7 +26,11 @@ object RecyclerViewMatchers {
         }
     }
 
-    fun checkRecyclerViewItem(resId: Int, position: Int, withMatcher: Matcher<View>) {
+    fun checkRecyclerViewItem(
+        resId: Int,
+        position: Int,
+        withMatcher: Matcher<View>
+    ) {
         Espresso.onView(ViewMatchers.withId(resId)).check(
             ViewAssertions.matches(
                 atPosition(
