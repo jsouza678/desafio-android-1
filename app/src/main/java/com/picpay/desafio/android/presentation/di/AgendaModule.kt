@@ -7,6 +7,7 @@ import com.picpay.desafio.android.presentation.home.AgendaViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
+@Suppress("RemoveExplicitTypeArguments", "USELESS_CAST")
 val agendaModule = module {
 
     single {

@@ -6,6 +6,7 @@ import com.picpay.desafio.android.data.contacts.data.repository.AgendaRepository
 import com.picpay.desafio.android.domain.repository.AgendaRepository
 import org.koin.dsl.module
 
+@Suppress("RemoveExplicitTypeArguments", "USELESS_CAST")
 val contactsModule = module {
 
     single {
