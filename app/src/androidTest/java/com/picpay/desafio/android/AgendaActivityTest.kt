@@ -2,6 +2,7 @@ package com.picpay.desafio.android
 
 import android.content.pm.ActivityInfo
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerViewAccessibilityDelegate
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBackUnconditionally
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -12,6 +13,8 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.picpay.desafio.android.domain.entity.User
 import com.picpay.desafio.android.presentation.home.AgendaActivity
+import com.picpay.desafio.android.utils.RecyclerViewUtils
+import com.picpay.desafio.android.utils.RecyclerViewUtils.getItemCount
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -87,8 +90,7 @@ class AgendaActivityTest: KoinTest {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         // Testing if recyclerview has items after rotation
-        val recyclerView = activity?.findViewById(R.id.recyclerView) as? RecyclerView
-        val itemCount = recyclerView?.adapter?.itemCount
+        val itemCount = getItemCount(R.id.recyclerView)
         Assert.assertEquals(response, FAKE_CONTACTS)
         Assert.assertTrue(itemCount != 0)
 
@@ -108,7 +110,7 @@ class AgendaActivityTest: KoinTest {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         // Testing if the first element visible is the same after the rotation
-        RecyclerViewMatchers.atPosition( 0, withText(FAKE_CONTACTS[0].name))
+        RecyclerViewUtils.atPosition( 0, withText(FAKE_CONTACTS[0].name))
 
         server.close()
     }
