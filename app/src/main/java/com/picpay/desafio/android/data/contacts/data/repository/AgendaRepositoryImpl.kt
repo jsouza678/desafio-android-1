@@ -13,7 +13,9 @@ import com.picpay.desafio.android.domain.repository.AgendaRepository
 import com.picpay.desafio.android.extensions.launchAsyncFunction
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class AgendaRepositoryImpl(
     private val service: PicPayService,
     private val dao: ContactsDao
