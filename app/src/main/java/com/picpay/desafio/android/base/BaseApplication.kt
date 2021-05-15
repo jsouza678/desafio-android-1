@@ -1,10 +1,12 @@
 package com.picpay.desafio.android.base
 
 import android.app.Application
+import com.picpay.desafio.android.BuildConfig
 import com.picpay.desafio.android.data.di.contactsModule
 import com.picpay.desafio.android.data.di.databaseModule
 import com.picpay.desafio.android.data.di.networkModule
 import com.picpay.desafio.android.presentation.di.agendaModule
+import com.picpay.desafio.android.utils.Constants.BASE_URL
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -26,6 +28,11 @@ class BaseApplication : Application() {
                     databaseModule,
                     networkModule,
                     agendaModule
+                )
+            )
+            properties(
+                mapOf(
+                    BASE_URL to BuildConfig.API_BASE_URL
                 )
             )
         }
