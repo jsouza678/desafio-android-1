@@ -1,7 +1,5 @@
 package com.picpay.desafio.android
 
-import android.R
-import android.app.Activity
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso
@@ -10,7 +8,6 @@ import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-
 
 object RecyclerViewMatchers {
 
@@ -29,7 +26,11 @@ object RecyclerViewMatchers {
         }
     }
 
-    fun checkRecyclerViewItem(resId: Int, position: Int, withMatcher: Matcher<View>) {
+    fun checkRecyclerViewItem(
+        resId: Int,
+        position: Int,
+        withMatcher: Matcher<View>
+    ) {
         Espresso.onView(ViewMatchers.withId(resId)).check(
             ViewAssertions.matches(
                 atPosition(
