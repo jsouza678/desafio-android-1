@@ -2,8 +2,8 @@ package com.picpay.desafio.android.utils
 
 import com.picpay.desafio.android.data.contacts.data.local.entity.UserLocal
 import com.picpay.desafio.android.data.contacts.data.remote.response.UserResponse
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.entity.User
 
 object FakeModels {
 

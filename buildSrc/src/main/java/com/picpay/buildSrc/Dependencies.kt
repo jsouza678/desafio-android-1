@@ -3,15 +3,15 @@ package com.picpay.buildSrc
 object Dependencies {
 
     object Core {
-        private const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         private const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
         private const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-        private const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+        const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         private const val gson = "com.google.code.gson:gson:${Versions.gson}"
         private const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
         private const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
         private const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-        private const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         private const val coroutinesX = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         private const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
         private const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"

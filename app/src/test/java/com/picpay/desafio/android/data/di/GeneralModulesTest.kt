@@ -2,7 +2,6 @@ package com.picpay.desafio.android.data.di
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.picpay.desafio.android.domain.repository.AgendaRepository
 import com.picpay.desafio.android.presentation.di.agendaModule
 import org.junit.After
 import org.junit.Before
@@ -13,7 +12,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.check.checkModules
-import org.koin.test.inject
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 

@@ -1,7 +1,7 @@
 package com.picpay.desafio.android.data.di
 
 import android.app.Application
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.domain.repository.AgendaRepository
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before

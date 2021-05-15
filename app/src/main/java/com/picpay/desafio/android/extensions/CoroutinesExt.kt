@@ -1,7 +1,7 @@
 package com.picpay.desafio.android.extensions
 
-import com.picpay.desafio.android.domain.entity.ApiError
-import com.picpay.desafio.android.domain.entity.ResponseHandler
+import com.picpay.domain.entity.ApiError
+import com.picpay.domain.entity.ResponseHandler
 import com.picpay.desafio.android.utils.Constants.UNKNOWN_ERROR
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

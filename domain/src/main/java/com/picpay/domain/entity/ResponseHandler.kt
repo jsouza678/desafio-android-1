@@ -1,4 +1,4 @@
-package com.picpay.desafio.android.domain.entity
+package com.picpay.domain.entity
 
 sealed class ResponseHandler<out T> {
     object Loading: ResponseHandler<Nothing>()
