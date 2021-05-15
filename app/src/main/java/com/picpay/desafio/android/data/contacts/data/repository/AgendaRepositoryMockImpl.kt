@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.flowOf
 class AgendaRepositoryMockImpl: AgendaRepository {
 
     override suspend fun fetchContacts(): Flow<ResponseHandler<List<User>>> {
+
         return getContacts()
     }
 
@@ -24,6 +25,7 @@ class AgendaRepositoryMockImpl: AgendaRepository {
     }
 
     override suspend fun getCachedContacts(): Flow<ResponseHandler<List<User>>> {
+
         return emptyFlow()
     }
 }
