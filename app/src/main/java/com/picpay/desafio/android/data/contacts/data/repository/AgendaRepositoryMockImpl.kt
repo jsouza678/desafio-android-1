@@ -3,6 +3,7 @@ package com.picpay.desafio.android.data.contacts.data.repository
 import com.picpay.desafio.android.domain.entity.ResponseHandler
 import com.picpay.desafio.android.domain.entity.User
 import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.desafio.android.utils.MockProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.flowOf
@@ -17,32 +18,7 @@ class AgendaRepositoryMockImpl: AgendaRepository {
 
         return flowOf(
             ResponseHandler.Success(
-                listOf(
-                    User(
-                        id = 0,
-                        img = "as",
-                        name = "teste",
-                        username = "1231"
-                    ),
-                    User(
-                        id = 1,
-                        img = "as",
-                        name = "teste",
-                        username = "1231"
-                    ),
-                    User(
-                        id = 2,
-                        img = "as",
-                        name = "teste",
-                        username = "1231"
-                    ),
-                    User(
-                        id = 3,
-                        img = "as",
-                        name = "teste",
-                        username = "1231"
-                    )
-                )
+                MockProvider.generateUsers(20)
             )
         )
     }
