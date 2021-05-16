@@ -1,9 +1,7 @@
 import com.picpay.buildSrc.Dependencies
 
-plugins {
-    id 'java-library'
-    id 'kotlin'
-}
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
 apply plugin: 'kotlin-kapt'
 
 java {

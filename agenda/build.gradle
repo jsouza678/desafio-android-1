@@ -1,19 +1,17 @@
 import com.picpay.buildSrc.Dependencies
+import com.picpay.buildSrc.Versions
 
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion Versions.compileSdk
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -25,14 +23,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     buildFeatures {
@@ -41,17 +39,11 @@ android {
 }
 
 dependencies {
-
-    implementation project (":base")
-    implementation project (":data")
-    implementation project (":domain")
-    implementation project(":sharedcomponents")
+    Dependencies.Modules.agendaModules.forEach { module ->
+        implementation project (module)
+    }
 
     Dependencies.Test.testList.forEach { testDependency ->
         testImplementation testDependency
-    }
-    
-    Dependencies.Test.androidTestList.forEach { testDependency ->
-        androidTestImplementation testDependency
     }
 }

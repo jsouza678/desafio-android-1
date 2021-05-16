@@ -1,11 +1,8 @@
 import com.picpay.buildSrc.Dependencies
 import com.picpay.buildSrc.Versions
 
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
-
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -33,9 +30,9 @@ android {
 }
 
 dependencies {
-
-    api project(":domain")
-    api project(":base")
+    Dependencies.Modules.dataModules.forEach { module ->
+        api project (module)
+    }
 
     Dependencies.Core.list.forEach { dependency ->
         implementation dependency

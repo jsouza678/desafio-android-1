@@ -72,12 +72,15 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":data")
-    implementation project(":agenda")
+    Dependencies.Modules.appModules.forEach { module ->
+        implementation project (module)
+    }
 
     Dependencies.Core.list.forEach { dependency ->
         implementation dependency
     }
+
+    kapt Dependencies.Core.roomCompiler
 
     Dependencies.UI.list.forEach { dependency ->
         implementation dependency
@@ -87,9 +90,11 @@ dependencies {
         implementation dependency
     }
 
-    kapt Dependencies.Core.roomCompiler
-
     Dependencies.Test.testList.forEach { testDependency ->
         testImplementation testDependency
+    }
+
+    Dependencies.Test.androidTestList.forEach { testDependency ->
+        androidTestImplementation testDependency
     }
 }

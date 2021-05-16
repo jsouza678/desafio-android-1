@@ -2,22 +2,52 @@ package com.picpay.buildSrc
 
 object Dependencies {
 
+    object Modules {
+        private const val data = ":data"
+        private const val domain = ":domain"
+        private const val agenda = ":agenda"
+        private const val sharedcomponents = ":sharedcomponents"
+        private const val base = ":base"
+
+        val agendaModules = listOf(
+            base,
+            data,
+            domain,
+            sharedcomponents
+        )
+
+        val appModules = listOf(
+            data,
+            agenda
+        )
+
+        val baseModules = listOf(
+            domain,
+            sharedcomponents
+        )
+
+        val dataModules = listOf(
+            domain,
+            base
+        )
+    }
+
     object Core {
-         const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+        const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
         private const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
         private const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-        const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
         private const val gson = "com.google.code.gson:gson:${Versions.gson}"
         private const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
         private const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
         private const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
-        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
         private const val coroutinesX = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
         private const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
         private const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
         private const val room = "androidx.room:room-ktx:${Versions.room}"
         private const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
-        const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 
         val list = listOf(
             kotlin,
@@ -34,6 +64,15 @@ object Dependencies {
             navigationUi,
             room,
             roomRuntime
+        )
+
+        val sharedComponents = listOf(
+            coroutinesCore,
+            kotlin,
+            coreKtx,
+            navigationUi,
+            navigationFragment,
+            viewModel
         )
     }
 
@@ -64,7 +103,7 @@ object Dependencies {
     }
 
     /**
-        https://insert-koin.io/docs/quickstart/kotlin
+    https://insert-koin.io/docs/quickstart/kotlin
      */
     object DI {
         private const val koinAndroid = "org.koin:koin-android:${Versions.koin}"

@@ -1,10 +1,8 @@
 import com.picpay.buildSrc.Versions
 import com.picpay.buildSrc.Dependencies
 
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -25,27 +23,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 }
 
 dependencies {
+    Dependencies.Core.sharedComponents.forEach { dependency ->
+        api dependency
+    }
+
+    Dependencies.UI.list.forEach { dependency ->
+        api dependency
+    }
 
     api Dependencies.DI.koinAndroid
-    api Dependencies.Core.coroutinesCore
-    api Dependencies.Core.kotlin
-    api Dependencies.Core.coreKtx
-    api Dependencies.Core.navigationUi
-    api Dependencies.Core.navigationFragment
-    api Dependencies.Core.viewModel
-    api Dependencies.UI.material
-    api Dependencies.UI.picasso
-    api Dependencies.UI.circleImageView
-    api Dependencies.UI.recyclerView
-    api Dependencies.UI.constraintLayout
 }
