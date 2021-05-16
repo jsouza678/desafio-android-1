@@ -104,6 +104,7 @@ object Dependencies {
         private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
         private const val coreKtx = "androidx.test:core-ktx:${Versions.coreKtxTest}"
         private const val jUnitExt = "androidx.test.ext:junit-ktx:${Versions.jUnitExt}"
+        private const val mockk = "io.mockk:mockk:${Versions.mockk}"
 
         val testList = listOf(
             jUnit,
@@ -112,7 +113,8 @@ object Dependencies {
             coreTesting,
             mockitoInline,
             koinTest,
-            coroutinesTest
+            coroutinesTest,
+            mockk
         )
 
         val androidTestList = listOf(

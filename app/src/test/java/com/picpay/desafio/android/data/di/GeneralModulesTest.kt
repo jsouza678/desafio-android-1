@@ -21,8 +21,7 @@ class GeneralModulesTest: KoinTest {
 
     @get:Rule
     val instantExecutorRule = InstantTaskExecutorRule()
-    @Mock
-    private lateinit var context: Application
+    @Mock private lateinit var context: Application
 
     @Before
     fun setup() {

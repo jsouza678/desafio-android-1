@@ -41,7 +41,7 @@ android {
     productFlavors {
         mock {
             dimension 'connectivity'
-            buildConfigField "String", API_BASE_URL, '""'
+            buildConfigField "String", API_BASE_URL, '"https://609a908e0f5a13001721b74e.mockapi.io/picpay/api/"'
         }
 
         remote {

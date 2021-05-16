@@ -19,6 +19,7 @@ import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_LOCAL
 import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_RESPONSE
 import com.picpay.desafio.android.utils.FakeModels.FAKE_EMPTY_CONTACTS
 import com.picpay.desafio.android.utils.FakeModels.SUCCESS_CONTACTS_CALL
+import io.mockk.unmockkAll
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -63,6 +64,7 @@ class AgendaRepositoryTest : KoinTest {
     @After
     fun tearDown() {
         stopKoin()
+        unmockkAll()
     }
 
     @Test
