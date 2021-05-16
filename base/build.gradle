@@ -1,10 +1,8 @@
 import com.picpay.buildSrc.Versions
 import com.picpay.buildSrc.Dependencies
 
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion Versions.compileSdk
@@ -32,7 +30,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = freeCompilerArgs + "-Xallow-result-return-type"
     }
 
@@ -42,8 +40,9 @@ android {
 }
 
 dependencies {
-    implementation project (":domain")
-    implementation project (":sharedcomponents")
+    Dependencies.Modules.baseModules.forEach { module ->
+        implementation project (module)
+    }
 
     implementation Dependencies.Core.gson
     implementation Dependencies.Network.gsonConverter
