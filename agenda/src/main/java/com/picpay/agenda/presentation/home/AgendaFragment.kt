@@ -15,7 +15,7 @@ import com.picpay.domain.entity.User
 import com.picpay.sharedcomponents.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AgendaFragment: BaseFragment<FragmentAgendaBinding>() {
+class AgendaFragment : BaseFragment<FragmentAgendaBinding>() {
 
     private val viewModel by viewModel<AgendaViewModel>()
     private lateinit var adapter: UserListAdapter
@@ -68,7 +68,7 @@ class AgendaFragment: BaseFragment<FragmentAgendaBinding>() {
     }
 
     private fun bindErrorResponse(apiError: ApiError<Throwable>) {
-        val message = when(apiError) {
+        val message = when (apiError) {
             is ApiError.HttpError -> getString(R.string.concact_http_error, apiError.message)
             is ApiError.NetworkError -> getString(R.string.connection_error)
             else -> getString(R.string.unknown_error)

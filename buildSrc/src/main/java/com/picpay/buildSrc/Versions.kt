@@ -15,9 +15,9 @@ object Versions {
     private const val versionPatch = 0
 
     const val versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
-    const val versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+    const val versionName = "$versionMajor.$versionMinor.$versionPatch"
 
-    const val kotlin = "1.4.10"
+    const val kotlin = "1.4.31"
     const val gradle = "4.1.3"
 
     const val appCompat = "1.1.0"
@@ -30,6 +30,7 @@ object Versions {
     const val navigation = "2.3.5"
     const val retrofit = "2.9.0"
     const val okHttp = "4.3.1"
+    const val ktlint = "0.35.0"
     const val picasso = "2.71828"
     const val circleImageView = "3.0.0"
     const val koin = "2.2.0-rc-4"

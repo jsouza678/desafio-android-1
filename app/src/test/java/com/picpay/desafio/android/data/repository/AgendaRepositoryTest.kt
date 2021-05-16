@@ -1,7 +1,10 @@
 package com.picpay.desafio.android.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.whenever
+import com.picpay.base.extensions.ErrorHandler
+import com.picpay.base.utils.Constants
 import com.picpay.data.contacts.data.local.dao.ContactsDao
 import com.picpay.data.contacts.data.local.entity.UserLocal
 import com.picpay.data.contacts.data.remote.PicPayService
@@ -9,17 +12,15 @@ import com.picpay.data.contacts.data.remote.response.UserResponse
 import com.picpay.data.contacts.data.repository.AgendaRepositoryImpl
 import com.picpay.data.di.databaseModule
 import com.picpay.data.di.networkModule
-import com.picpay.domain.entity.ApiError
-import com.picpay.domain.entity.ResponseHandler
-import com.picpay.domain.repository.AgendaRepository
-import com.picpay.base.extensions.ErrorHandler
-import com.picpay.base.utils.Constants
 import com.picpay.desafio.android.data.di.contactsModule
 import com.picpay.desafio.android.utils.FakeModels.EMPTY_CONTACTS_CALL
 import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_LOCAL
 import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_RESPONSE
 import com.picpay.desafio.android.utils.FakeModels.FAKE_EMPTY_CONTACTS
 import com.picpay.desafio.android.utils.FakeModels.SUCCESS_CONTACTS_CALL
+import com.picpay.domain.entity.ApiError
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.repository.AgendaRepository
 import io.mockk.unmockkAll
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
@@ -35,6 +36,9 @@ import org.koin.core.component.KoinApiExtension
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
+import org.mockito.Mockito.atLeastOnce
+import org.mockito.Mockito.never
+import org.mockito.Mockito.spy
 import org.mockito.Mockito.verify
 import retrofit2.HttpException
 import retrofit2.Response
@@ -180,7 +184,7 @@ class AgendaRepositoryTest : KoinTest {
         val GENERIC_ERROR_RESPONSE = ResponseHandler.Error(
             ApiError.HttpError(
                 code = 404,
-                message = Constants.GENERIC_NETWORK_ERROR,
+                message = Constants.DEFAULT_ERROR,
                 exception = ErrorHandler().getErrorFromApi(HttpException(GENERIC_ERROR)).exception
             )
         )

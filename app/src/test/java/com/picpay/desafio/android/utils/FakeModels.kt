@@ -4,13 +4,6 @@ import com.picpay.data.contacts.data.local.entity.UserLocal
 import com.picpay.data.contacts.data.remote.response.UserResponse
 import com.picpay.domain.entity.ResponseHandler
 import com.picpay.domain.entity.User
-import com.picpay.domain.entity.ApiError
-import com.picpay.base.extensions.ErrorHandler
-import com.picpay.base.utils.Constants.GENERIC_NETWORK_ERROR
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.ResponseBody.Companion.toResponseBody
-import retrofit2.HttpException
-import retrofit2.Response
 
 object FakeModels {
 

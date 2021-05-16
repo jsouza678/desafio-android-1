@@ -7,7 +7,7 @@ import com.picpay.domain.entity.User
 fun UserResponse.toDomainModel(): User =
     User(
         id = this.id,
-        img = if(this.img.isNullOrBlank()) "Empty image url" else this.img,
+        img = if (this.img.isNullOrBlank()) "Empty image url" else this.img,
         name = this.name ?: "Empty name",
         username = this.username ?: "Empty username"
     )
@@ -15,7 +15,7 @@ fun UserResponse.toDomainModel(): User =
 fun UserResponse.toDatabaseModel(): UserLocal =
     UserLocal(
         id = this.id,
-        img = if(this.img.isNullOrBlank()) "Empty image url" else this.img,
+        img = if (this.img.isNullOrBlank()) "Empty image url" else this.img,
         name = this.name ?: "Empty name",
         username = this.username ?: "Empty username"
     )

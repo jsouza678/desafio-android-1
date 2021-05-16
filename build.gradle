@@ -1,16 +1,17 @@
 import com.picpay.buildSrc.Dependencies
 
 buildscript {
-    ext {
-        kotlin_version = '1.4.31'
-    }
     repositories {
         google()
         jcenter()
 
     }
+
+    configurations {
+        ktlint
+    }
+
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         Dependencies.Classpath.classPathList.forEach { dependency ->
             classpath dependency
         }
@@ -24,6 +25,24 @@ allprojects {
     }
 }
 
+dependencies {
+    ktlint Dependencies.Plugin.ktlint
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "**/*.kt", "!**/bin/**/*.kt", "!**/*InstrumentedTest.kt", "--reporter=plain?group_by_file&color", "no-wildcard-imports = false"
+}
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    main = "com.pinterest.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "**/*.kt", "!**/bin/**/*.kt", "!**/*InstrumentedTest.kt", "--reporter=plain?group_by_file&color", "no-wildcard-imports = false"
 }
