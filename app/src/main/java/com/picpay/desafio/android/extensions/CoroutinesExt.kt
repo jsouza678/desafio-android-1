@@ -1,13 +1,14 @@
 package com.picpay.desafio.android.extensions
 
-import com.picpay.desafio.android.domain.entity.ApiError
-import com.picpay.desafio.android.domain.entity.ResponseHandler
+import com.picpay.domain.entity.ApiError
+import com.picpay.domain.entity.ResponseHandler
 import com.picpay.desafio.android.utils.Constants.UNKNOWN_ERROR
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
+import org.koin.core.component.KoinApiExtension
 import retrofit2.HttpException
 import retrofit2.Response
 import java.io.IOException
@@ -15,6 +16,7 @@ import java.io.IOException
 /**
  * R means Response, and D, Domain
  */
+@KoinApiExtension
 fun <R, D> launchAsyncFunction(
     blockToRun: suspend () -> Response<R>,
     coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
@@ -37,6 +39,7 @@ fun <R, D> launchAsyncFunction(
     }
 }
 
+@KoinApiExtension
 private fun Throwable.getErrorParsed(): ResponseHandler.Error =
     when (this) {
         is IOException -> ResponseHandler.Error(

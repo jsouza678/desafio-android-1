@@ -2,9 +2,9 @@ package com.picpay.desafio.android.utils
 
 import com.picpay.desafio.android.data.contacts.data.local.entity.UserLocal
 import com.picpay.desafio.android.data.contacts.data.remote.response.UserResponse
-import com.picpay.desafio.android.domain.entity.ApiError
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.entity.User
+import com.picpay.domain.entity.ApiError
 import com.picpay.desafio.android.extensions.ErrorHandler
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -17,61 +17,61 @@ object FakeModels {
     val FAKE_CONTACTS_RESPONSE = listOf(
         UserResponse(
             id = 1,
-            img = "",
-            name = "",
-            username = ""
+            img = "test",
+            name = "João Souza",
+            username = "Souza"
         ),
         UserResponse(
-            id = 1,
+            id = 2,
             img = "",
-            name = "",
-            username = ""
+            name = null,
+            username = null
         ),
         UserResponse(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 3,
+            img = " ",
+            name = null,
+            username = null
         )
     )
     val FAKE_CONTACTS_LOCAL = listOf(
         UserLocal(
             id = 1,
-            img = "",
-            name = "",
-            username = ""
+            img = "test",
+            name = "João Souza",
+            username = "Souza"
         ),
         UserLocal(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 2,
+            img = "Empty image url",
+            name = "Empty name",
+            username = "Empty username"
         ),
         UserLocal(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 3,
+            img = "Empty image url",
+            name = "Empty name",
+            username = "Empty username"
         )
     )
     val FAKE_CONTACTS = listOf(
         User(
             id = 1,
-            img = "",
-            name = "",
-            username = ""
+            img = "test",
+            name = "João Souza",
+            username = "Souza"
         ),
         User(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 2,
+            img = "Empty image url",
+            name = "Empty name",
+            username = "Empty username"
         ),
         User(
-            id = 1,
-            img = "",
-            name = "",
-            username = ""
+            id = 3,
+            img = "Empty image url",
+            name = "Empty name",
+            username = "Empty username"
         )
     )
     val GENERIC_ERROR: Response<UserResponse> = Response.error(

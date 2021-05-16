@@ -1,8 +1,8 @@
-package com.picpay.desafio.android.domain.usecase
+package com.picpay.domain.usecase
 
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.entity.User
+import com.picpay.domain.repository.AgendaRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetContactListImpl(private val repository: AgendaRepository): GetContactList {

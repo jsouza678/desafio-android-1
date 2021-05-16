@@ -5,10 +5,10 @@ import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.entity.User
-import com.picpay.desafio.android.domain.usecase.GetContactList
-import com.picpay.desafio.android.domain.usecase.GetContactListImpl
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.entity.User
+import com.picpay.domain.usecase.GetContactList
+import com.picpay.domain.usecase.GetContactListImpl
 import com.picpay.desafio.android.utils.FakeModels
 import io.mockk.coEvery
 import io.mockk.mockk

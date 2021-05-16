@@ -9,9 +9,9 @@ import com.picpay.desafio.android.data.contacts.data.remote.response.UserRespons
 import com.picpay.desafio.android.data.di.contactsModule
 import com.picpay.desafio.android.data.di.databaseModule
 import com.picpay.desafio.android.data.di.networkModule
-import com.picpay.desafio.android.domain.entity.ApiError
-import com.picpay.desafio.android.domain.entity.ResponseHandler
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.domain.entity.ApiError
+import com.picpay.domain.entity.ResponseHandler
+import com.picpay.domain.repository.AgendaRepository
 import com.picpay.desafio.android.extensions.ErrorHandler
 import com.picpay.desafio.android.utils.Constants
 import com.picpay.desafio.android.utils.FakeModels.EMPTY_CONTACTS_CALL

@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+@Suppress("RemoveExplicitTypeArguments", "USELESS_CAST")
 val networkModule = module {
 
     single {
@@ -28,8 +29,10 @@ val networkModule = module {
     }
 
     single {
+        val baseUrl = getProperty(BASE_URL)
+
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(baseUrl)
             .client(get<OkHttpClient>())
             .addConverterFactory(GsonConverterFactory.create(get<Gson>()))
             .build()

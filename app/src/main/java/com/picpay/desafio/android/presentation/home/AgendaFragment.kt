@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.picpay.desafio.android.R
 import com.picpay.desafio.android.base.BaseFragment
 import com.picpay.desafio.android.databinding.FragmentAgendaBinding
-import com.picpay.desafio.android.domain.entity.ResponseHandler
+import com.picpay.domain.entity.ResponseHandler
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AgendaFragment: BaseFragment<FragmentAgendaBinding>() {

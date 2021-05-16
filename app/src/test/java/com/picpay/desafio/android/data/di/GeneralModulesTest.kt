@@ -2,8 +2,9 @@ package com.picpay.desafio.android.data.di
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.picpay.desafio.android.domain.repository.AgendaRepository
+import com.picpay.desafio.android.BuildConfig
 import com.picpay.desafio.android.presentation.di.agendaModule
+import com.picpay.desafio.android.utils.Constants
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -13,7 +14,6 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.check.checkModules
-import org.koin.test.inject
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
@@ -45,6 +45,9 @@ class GeneralModulesTest: KoinTest {
         startKoin {
             androidContext(context)
             modules(koinModules)
+            properties(
+                mapOf(Constants.BASE_URL to BuildConfig.API_BASE_URL)
+            )
         }.checkModules()
     }
 }

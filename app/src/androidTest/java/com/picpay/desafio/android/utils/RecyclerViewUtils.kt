@@ -1,4 +1,4 @@
-package com.picpay.desafio.android
+package com.picpay.desafio.android.utils
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -6,10 +6,13 @@ import androidx.test.espresso.Espresso
 import androidx.test.espresso.assertion.ViewAssertions
 import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers
+import com.picpay.desafio.android.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import org.hamcrest.Matchers
+import org.hamcrest.TypeSafeMatcher
 
-object RecyclerViewMatchers {
+object RecyclerViewUtils {
 
     fun atPosition(
         position: Int,
@@ -26,7 +29,11 @@ object RecyclerViewMatchers {
         }
     }
 
-    fun checkRecyclerViewItem(resId: Int, position: Int, withMatcher: Matcher<View>) {
+    fun checkRecyclerViewItem(
+        resId: Int,
+        position: Int,
+        withMatcher: Matcher<View>
+    ) {
         Espresso.onView(ViewMatchers.withId(resId)).check(
             ViewAssertions.matches(
                 atPosition(
@@ -35,5 +42,24 @@ object RecyclerViewMatchers {
                 )
             )
         )
+    }
+
+    fun getItemCount(resId: Int): Int {
+        var itemCount = 0
+
+        val matcher = object : TypeSafeMatcher<View?>() {
+            override fun describeTo(description: Description?) {
+                description?.appendText("with list size: $itemCount")
+            }
+            override fun matchesSafely(item: View?): Boolean {
+                itemCount = (item as? RecyclerView)?.adapter?.itemCount ?: 0
+                return true
+            }
+        }
+
+        Espresso.onView(Matchers.allOf(ViewMatchers.withId(resId), ViewMatchers.isDisplayed()))
+            .check(ViewAssertions.matches(matcher))
+
+        return itemCount
     }
 }
