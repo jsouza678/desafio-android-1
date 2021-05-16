@@ -73,7 +73,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":data")
-    
+    implementation project(":agenda")
+
     Dependencies.Core.list.forEach { dependency ->
         implementation dependency
     }
@@ -90,9 +91,5 @@ dependencies {
 
     Dependencies.Test.testList.forEach { testDependency ->
         testImplementation testDependency
-    }
-
-    Dependencies.Test.androidTestList.forEach { testDependency ->
-        androidTestImplementation testDependency
     }
 }

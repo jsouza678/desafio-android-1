@@ -3,17 +3,19 @@ package com.picpay.data.contacts.data.repository
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.asFlow
 import com.picpay.data.contacts.data.local.dao.ContactsDao
-import com.picpay.data.contacts.data.mapper.toDatabaseModel
 import com.picpay.data.contacts.data.mapper.toDomainModel
 import com.picpay.data.contacts.data.remote.PicPayService
 import com.picpay.data.contacts.data.remote.response.UserResponse
-import com.picpay.data.extensions.launchAsyncFunction
+import com.picpay.base.extensions.launchAsyncFunction
+import com.picpay.data.contacts.data.mapper.toDatabaseModel
 import com.picpay.domain.entity.ResponseHandler
 import com.picpay.domain.entity.User
 import com.picpay.domain.repository.AgendaRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class AgendaRepositoryImpl(
     private val service: PicPayService,
     private val dao: ContactsDao

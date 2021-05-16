@@ -35,6 +35,7 @@ android {
 dependencies {
 
     api project(":domain")
+    api project(":base")
 
     Dependencies.Core.list.forEach { dependency ->
         implementation dependency

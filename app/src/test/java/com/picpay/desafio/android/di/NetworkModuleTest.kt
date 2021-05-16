@@ -3,9 +3,9 @@ package com.picpay.desafio.android.di
 import com.google.gson.Gson
 import com.picpay.data.contacts.data.remote.PicPayService
 import com.picpay.data.contacts.data.utils.Constants
-import com.picpay.data.contacts.data.utils.Constants.BASE_URL
 import com.picpay.data.di.networkModule
 import com.picpay.desafio.android.BuildConfig
+import com.picpay.desafio.android.utils.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import org.junit.After
 import org.junit.Assert
