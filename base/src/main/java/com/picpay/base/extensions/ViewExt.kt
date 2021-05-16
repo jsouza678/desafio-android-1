@@ -12,6 +12,6 @@ fun View.showErrorSnackbar(message: String) {
     ).setBackgroundTint(
         androidx.core.content.ContextCompat.getColor(
             this.context,
-            com.picpay.sharedcomponents.R.color.colorError
+            com.picpay.sharedcomponents.R.color.pomegranate_red
         )).show()
 }

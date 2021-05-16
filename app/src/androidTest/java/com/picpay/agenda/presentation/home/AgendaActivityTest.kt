@@ -44,9 +44,9 @@ class AgendaActivityTest: KoinTest {
     fun shouldDisplayTitle() {
         val expectedTitle = context.getString(R.string.title)
 
-        onView(withId(R.id.container_nested_scroll_view)).check(matches(isDisplayed()))
+        onView(withId(R.id.container_nsv)).check(matches(isDisplayed()))
         onView(withText(expectedTitle)).check(matches(isDisplayed()))
-        onView(withId(R.id.recyclerView)).check(matches(isDisplayed()))
+        onView(withId(R.id.contacts_rv)).check(matches(isDisplayed()))
     }
 
     @Test
@@ -88,7 +88,7 @@ class AgendaActivityTest: KoinTest {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         // Testing if recyclerview has items after rotation
-        val itemCount = getItemCount(R.id.recyclerView)
+        val itemCount = getItemCount(R.id.contacts_rv)
         Assert.assertEquals(response, FAKE_CONTACTS)
         Assert.assertTrue(itemCount != 0)
 

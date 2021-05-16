@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#2B2C2F</color>
-    <color name="colorPrimaryDark">#1D1E20</color>
-    <color name="colorAccent">#11C76F</color>
-    <color name="colorPrimaryLight">#ACB1BD</color>
-    <color name="colorDetail">#80FFFFFF</color>
-    <color name="colorError">#FF0000</color>
+    <color name="shark_black">#2B2C2F</color>
+    <color name="shark_black_deep">#1D1E20</color>
+    <color name="malachite_green">#11C76F</color>
+    <color name="aluminium_grey">#ACB1BD</color>
+    <color name="white_translucent_50">#80FFFFFF</color>
+    <color name="pomegranate_red">#FF0000</color>
 </resources>

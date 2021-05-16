@@ -4,60 +4,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/shark_black_deep"
     android:orientation="vertical">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/picture"
-        android:layout_width="52dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
+        android:id="@+id/picture_iv"
+        android:layout_width="@dimen/agenda_avatar_size"
+        android:layout_height="@dimen/agenda_avatar_size"
+        android:layout_marginStart="@dimen/big_margin"
+        android:layout_marginVertical="@dimen/agenda_avatar_vertical_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/ic_round_account_circle" />
 
     <TextView
-        android:id="@+id/username"
+        android:id="@+id/username_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="@dimen/default_margin"
+        android:layout_marginTop="@dimen/medium_margin"
         android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/name"
-        app:layout_constraintStart_toEndOf="@+id/picture"
-        app:layout_constraintTop_toTopOf="@+id/picture"
+        app:layout_constraintBottom_toTopOf="@id/name_tv"
+        app:layout_constraintStart_toEndOf="@id/picture_iv"
+        app:layout_constraintTop_toTopOf="@id/picture_iv"
         tools:text="\@username" />
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/colorDetail"
-        app:layout_constraintBottom_toBottomOf="@+id/picture"
-        app:layout_constraintStart_toStartOf="@+id/username"
-        app:layout_constraintTop_toBottomOf="@+id/username"
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:textColor="@color/white_translucent_50"
+        app:layout_constraintBottom_toBottomOf="@id/picture_iv"
+        app:layout_constraintStart_toStartOf="@id/username_tv"
+        app:layout_constraintTop_toBottomOf="@id/username_tv"
         tools:text="Name Surname" />
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/avatar_pb"
         style="?android:attr/progressBarStyle"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="@dimen/default_margin"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/picture"
-        app:layout_constraintEnd_toEndOf="@+id/picture"
-        app:layout_constraintStart_toStartOf="@+id/picture"
-        app:layout_constraintTop_toTopOf="@+id/picture" />
+        app:layout_constraintBottom_toBottomOf="@id/picture_iv"
+        app:layout_constraintEnd_toEndOf="@id/picture_iv"
+        app:layout_constraintStart_toStartOf="@id/picture_iv"
+        app:layout_constraintTop_toTopOf="@id/picture_iv" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
