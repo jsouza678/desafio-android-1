@@ -72,17 +72,13 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(":domain")
+    implementation project(":data")
     
     Dependencies.Core.list.forEach { dependency ->
         implementation dependency
     }
 
     Dependencies.UI.list.forEach { dependency ->
-        implementation dependency
-    }
-
-    Dependencies.Network.list.forEach { dependency ->
         implementation dependency
     }
 

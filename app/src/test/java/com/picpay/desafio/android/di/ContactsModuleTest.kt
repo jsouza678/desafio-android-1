@@ -1,9 +1,12 @@
-package com.picpay.desafio.android.data.di
+package com.picpay.desafio.android.di
 
 import android.app.Application
-import com.picpay.data.contacts.data.local.dao.ContactsDao
-import com.picpay.data.contacts.data.local.database.AgendaDatabase
+import com.picpay.data.contacts.data.utils.Constants
 import com.picpay.data.di.databaseModule
+import com.picpay.data.di.networkModule
+import com.picpay.desafio.android.BuildConfig
+import com.picpay.desafio.android.data.di.contactsModule
+import com.picpay.domain.repository.AgendaRepository
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -16,10 +19,9 @@ import org.koin.test.inject
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class DatabaseModuleTest: KoinTest {
+class ContactsModuleTest : KoinTest {
 
-    private val dao: ContactsDao by inject()
-    private val database: AgendaDatabase by inject()
+    private val agendaRepository: AgendaRepository by inject()
     @Mock private lateinit var context: Application
 
     @Before
@@ -28,7 +30,12 @@ class DatabaseModuleTest: KoinTest {
         startKoin {
             androidContext(context)
             modules(
-                databaseModule
+                databaseModule,
+                contactsModule,
+                networkModule
+            )
+            properties(
+                mapOf(Constants.BASE_URL to BuildConfig.API_BASE_URL)
             )
         }
     }
@@ -39,12 +46,7 @@ class DatabaseModuleTest: KoinTest {
     }
 
     @Test
-    fun `WHEN koin application is started it SHOULD instantiate database`() {
-        Assert.assertNotNull(database)
-    }
-
-    @Test
-    fun `WHEN koin application is started it SHOULD instantiate dao`() {
-        Assert.assertNotNull(dao)
+    fun `WHEN koin application is started it SHOULD instantiate repository`() {
+        Assert.assertNotNull(agendaRepository)
     }
 }
