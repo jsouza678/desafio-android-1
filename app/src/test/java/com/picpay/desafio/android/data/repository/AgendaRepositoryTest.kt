@@ -180,7 +180,7 @@ class AgendaRepositoryTest : KoinTest {
         val GENERIC_ERROR_RESPONSE = ResponseHandler.Error(
             ApiError.HttpError(
                 code = 404,
-                message = Constants.GENERIC_NETWORK_ERROR,
+                message = Constants.DEFAULT_ERROR,
                 exception = ErrorHandler().getErrorFromApi(HttpException(GENERIC_ERROR)).exception
             )
         )
