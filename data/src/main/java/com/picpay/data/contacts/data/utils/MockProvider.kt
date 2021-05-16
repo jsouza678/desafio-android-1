@@ -1,9 +1,9 @@
-package com.picpay.desafio.android.utils
+package com.picpay.data.contacts.data.utils
 
 import com.picpay.domain.entity.User
-import java.util.*
+import java.util.Random
 
-object MockProvider  {
+object MockProvider {
     private fun generateNickName(): String {
         val allowedChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
         return (1..8)
@@ -27,7 +27,7 @@ object MockProvider  {
 
     fun generateUsers(count: Int): List<User> {
         val userList = mutableListOf<User>()
-        for(i in 0..count) {
+        for (i in 0..count) {
             userList.add(generateRandomUser())
         }
 

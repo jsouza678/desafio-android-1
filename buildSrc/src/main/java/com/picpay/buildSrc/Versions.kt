@@ -15,7 +15,7 @@ object Versions {
     private const val versionPatch = 0
 
     const val versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
-    const val versionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+    const val versionName = "$versionMajor.$versionMinor.$versionPatch"
 
     const val kotlin = "1.4.31"
     const val gradle = "4.1.3"

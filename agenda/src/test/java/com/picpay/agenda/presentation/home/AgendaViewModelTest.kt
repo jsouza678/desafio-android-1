@@ -26,7 +26,11 @@ import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
-import org.junit.*
+import org.junit.After
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Rule
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
@@ -77,7 +81,6 @@ class AgendaViewModelTest {
 
             viewModel.getContactData()
             val flowResult = useCase.getContacts().toList()
-
 
             verify(observer, times(1)).onChanged(ResponseHandler.Loading)
             verify(observer, atLeastOnce()).onChanged(ResponseHandler.Success(FAKE_CONTACTS))

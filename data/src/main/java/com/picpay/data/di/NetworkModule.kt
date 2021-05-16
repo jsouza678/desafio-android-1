@@ -5,11 +5,11 @@ import com.google.gson.GsonBuilder
 import com.picpay.data.contacts.data.remote.PicPayService
 import com.picpay.data.contacts.data.utils.Constants.BASE_URL
 import com.picpay.data.contacts.data.utils.Constants.DEFAULT_TIMEOUT
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 
 @Suppress("RemoveExplicitTypeArguments", "USELESS_CAST")
 val networkModule = module {

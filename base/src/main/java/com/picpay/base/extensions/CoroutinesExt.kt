@@ -3,6 +3,7 @@ package com.picpay.base.extensions
 import com.picpay.base.utils.Constants.UNKNOWN_ERROR
 import com.picpay.domain.entity.ApiError
 import com.picpay.domain.entity.ResponseHandler
+import java.io.IOException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +12,6 @@ import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinApiExtension
 import retrofit2.HttpException
 import retrofit2.Response
-import java.io.IOException
 
 /**
  * R means Response, and D, Domain

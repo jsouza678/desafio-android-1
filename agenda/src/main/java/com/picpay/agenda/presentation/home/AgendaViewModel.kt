@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.collect
 class AgendaViewModel(
     private val useCase: GetContactList,
     private val coroutineScope: CoroutineScope? = CoroutineScope(Dispatchers.IO)
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val contacts: MutableLiveData<ResponseHandler<List<User>>> = MutableLiveData()
 

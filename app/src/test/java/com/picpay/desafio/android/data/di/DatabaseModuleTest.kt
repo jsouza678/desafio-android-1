@@ -16,7 +16,7 @@ import org.koin.test.inject
 import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 
-class DatabaseModuleTest: KoinTest {
+class DatabaseModuleTest : KoinTest {
 
     private val dao: ContactsDao by inject()
     private val database: AgendaDatabase by inject()

@@ -4,14 +4,16 @@ import android.content.pm.ActivityInfo
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBackUnconditionally
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.picpay.desafio.android.R
 import com.picpay.agenda.utils.RecyclerViewUtils
 import com.picpay.agenda.utils.RecyclerViewUtils.getItemCount
+import com.picpay.desafio.android.R
 import com.picpay.domain.entity.User
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
@@ -26,7 +28,7 @@ import org.koin.core.component.inject
 import org.koin.test.KoinTest
 
 @KoinApiExtension
-class AgendaActivityTest: KoinTest {
+class AgendaActivityTest : KoinTest {
 
     @get: Rule
     val activityTestRule = ActivityScenarioRule(AgendaActivity::class.java)
@@ -56,7 +58,7 @@ class AgendaActivityTest: KoinTest {
         server.start(serverPort)
 
         // Checking if response data is the same as the expected one
-        val response = gson.fromJson<List<User>>(body, object: TypeToken<List<User>>(){}.type)
+        val response = gson.fromJson<List<User>>(body, object : TypeToken<List<User>>() {}.type)
         Assert.assertEquals(response, FAKE_CONTACTS)
 
         server.close()
@@ -83,7 +85,7 @@ class AgendaActivityTest: KoinTest {
             activity = it
         }
 
-        val response = gson.fromJson<List<User>>(body, object: TypeToken<List<User>>(){}.type)
+        val response = gson.fromJson<List<User>>(body, object : TypeToken<List<User>>() {}.type)
 
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
@@ -108,7 +110,7 @@ class AgendaActivityTest: KoinTest {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         // Testing if the first element visible is the same after the rotation
-        RecyclerViewUtils.atPosition( 0, withText(FAKE_CONTACTS[0].name))
+        RecyclerViewUtils.atPosition(0, withText(FAKE_CONTACTS[0].name))
 
         server.close()
     }
