@@ -1,10 +1,11 @@
 package com.picpay.desafio.android.presentation.di
 
 import android.app.Application
+import com.picpay.agenda.presentation.di.agendaModule
 import com.picpay.desafio.android.BuildConfig
 import com.picpay.data.di.databaseModule
 import com.picpay.data.di.networkModule
-import com.picpay.desafio.android.presentation.home.AgendaViewModel
+import com.picpay.agenda.presentation.home.AgendaViewModel
 import com.picpay.desafio.android.data.di.contactsModule
 import com.picpay.desafio.android.utils.Constants
 import kotlinx.coroutines.test.TestCoroutineDispatcher

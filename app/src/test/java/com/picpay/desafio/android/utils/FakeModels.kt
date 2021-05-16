@@ -5,7 +5,8 @@ import com.picpay.data.contacts.data.remote.response.UserResponse
 import com.picpay.domain.entity.ResponseHandler
 import com.picpay.domain.entity.User
 import com.picpay.domain.entity.ApiError
-import com.picpay.data.extensions.ErrorHandler
+import com.picpay.base.extensions.ErrorHandler
+import com.picpay.base.utils.Constants.GENERIC_NETWORK_ERROR
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.HttpException
@@ -72,23 +73,6 @@ object FakeModels {
             img = "Empty image url",
             name = "Empty name",
             username = "Empty username"
-        )
-    )
-    val GENERIC_ERROR: Response<UserResponse> = Response.error(
-        404,
-        "{\"message\":\"Api Generic Error\"}"
-            .toResponseBody("application/json".toMediaTypeOrNull())
-    )
-    val GENERIC_UNEXPECTED_ERROR: Response<UserResponse> = Response.error(
-        409,
-        "{\"xxxxxxxxx\":\"123 test\"}"
-            .toResponseBody("application/json".toMediaTypeOrNull())
-    )
-    val GENERIC_ERROR_RESPONSE = ResponseHandler.Error(
-        ApiError.HttpError(
-            code = 404,
-            message = Constants.GENERIC_NETWORK_ERROR,
-            exception = ErrorHandler().getErrorFromApi(HttpException(GENERIC_ERROR)).exception
         )
     )
     val SUCCESS_CONTACTS_CALL = ResponseHandler.Success(FAKE_CONTACTS)

@@ -12,8 +12,8 @@ import com.picpay.data.di.networkModule
 import com.picpay.domain.entity.ApiError
 import com.picpay.domain.entity.ResponseHandler
 import com.picpay.domain.repository.AgendaRepository
-import com.picpay.data.contacts.data.utils.Constants
-import com.picpay.data.extensions.ErrorHandler
+import com.picpay.base.extensions.ErrorHandler
+import com.picpay.base.utils.Constants
 import com.picpay.desafio.android.data.di.contactsModule
 import com.picpay.desafio.android.utils.FakeModels.EMPTY_CONTACTS_CALL
 import com.picpay.desafio.android.utils.FakeModels.FAKE_CONTACTS_LOCAL
@@ -31,6 +31,7 @@ import org.junit.Assert.assertSame
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.koin.core.component.KoinApiExtension
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
@@ -38,6 +39,7 @@ import org.mockito.Mockito.verify
 import retrofit2.HttpException
 import retrofit2.Response
 
+@KoinApiExtension
 class AgendaRepositoryTest : KoinTest {
 
     @get:Rule

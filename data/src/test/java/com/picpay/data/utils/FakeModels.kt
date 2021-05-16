@@ -5,7 +5,6 @@ import com.picpay.data.contacts.data.remote.response.UserResponse
 import com.picpay.domain.entity.User
 
 object FakeModels {
-
     val FAKE_CONTACTS_RESPONSE = listOf(
         UserResponse(
             id = 1,

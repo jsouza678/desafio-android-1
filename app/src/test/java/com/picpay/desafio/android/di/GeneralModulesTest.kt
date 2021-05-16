@@ -2,12 +2,12 @@ package com.picpay.desafio.android.di
 
 import android.app.Application
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.picpay.data.contacts.data.utils.Constants
+import com.picpay.desafio.android.utils.Constants
 import com.picpay.data.di.databaseModule
 import com.picpay.data.di.networkModule
 import com.picpay.desafio.android.BuildConfig
 import com.picpay.desafio.android.data.di.contactsModule
-import com.picpay.desafio.android.presentation.di.agendaModule
+import com.picpay.agenda.presentation.di.agendaModule
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

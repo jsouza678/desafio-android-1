@@ -1,3 +1,6 @@
+include ':sharedcomponents'
+include ':base'
+include ':agenda'
 include ':data'
 include ':domain'
 include ':app'
