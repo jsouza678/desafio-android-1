@@ -50,8 +50,4 @@ dependencies {
     Dependencies.Test.testList.forEach { testDependency ->
         testImplementation testDependency
     }
-    
-    Dependencies.Test.androidTestList.forEach { testDependency ->
-        androidTestImplementation testDependency
-    }
 }

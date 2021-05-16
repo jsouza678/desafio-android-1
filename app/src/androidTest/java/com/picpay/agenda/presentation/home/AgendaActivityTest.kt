@@ -1,4 +1,4 @@
-package com.picpay.agenda.presentation
+package com.picpay.agenda.presentation.home
 
 import android.content.pm.ActivityInfo
 import androidx.test.espresso.Espresso.onView
@@ -9,7 +9,6 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.picpay.agenda.presentation.home.AgendaActivity
 import com.picpay.desafio.android.R
 import com.picpay.agenda.utils.RecyclerViewUtils
 import com.picpay.agenda.utils.RecyclerViewUtils.getItemCount
@@ -23,6 +22,7 @@ import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
 import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.inject
 import org.koin.test.KoinTest
 
 @KoinApiExtension
