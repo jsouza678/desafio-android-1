@@ -102,9 +102,7 @@ object Dependencies {
         )
     }
 
-    /**
-    https://insert-koin.io/docs/quickstart/kotlin
-     */
+    /** https://insert-koin.io/docs/quickstart/kotlin */
     object DI {
         private const val koinAndroid = "org.koin:koin-android:${Versions.koin}"
         private const val koinCore = "org.koin:koin-core:${Versions.koin}"
@@ -118,9 +116,11 @@ object Dependencies {
     }
 
     object Network {
+        /** https://square.github.io/retrofit/ */
         private const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         private const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
         private const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
+        /** https://github.com/square/okhttp/tree/master/mockwebserver */
         private const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okHttp}"
 
         val list = listOf(
@@ -143,6 +143,7 @@ object Dependencies {
         private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
         private const val coreKtx = "androidx.test:core-ktx:${Versions.coreKtxTest}"
         private const val jUnitExt = "androidx.test.ext:junit-ktx:${Versions.jUnitExt}"
+        /** https://mockk.io/ */
         private const val mockk = "io.mockk:mockk:${Versions.mockk}"
 
         val testList = listOf(
