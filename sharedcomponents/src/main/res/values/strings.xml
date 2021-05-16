@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">PicPay</string>
     <string name="title">Contatos</string>
+
+    <!-- ERROR MESSAGES -->
     <string name="concact_http_error">Erro %s</string>
     <string name="empty_data_error">Nenhum contato disponível!</string>
     <string name="connection_error">Verifique sua conexão e tente novamente.</string>

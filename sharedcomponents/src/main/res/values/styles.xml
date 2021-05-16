@@ -1,5 +1,4 @@
 <resources>
-
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/shark_black</item>
         <item name="colorPrimaryDark">@color/shark_black_deep</item>

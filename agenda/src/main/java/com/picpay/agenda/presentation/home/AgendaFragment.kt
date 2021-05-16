@@ -2,12 +2,11 @@ package com.picpay.agenda.presentation.home
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.BaseTransientBottomBar
-import com.google.android.material.snackbar.Snackbar
 import com.picpay.agenda.databinding.FragmentAgendaBinding
+import com.picpay.base.extensions.makeGone
+import com.picpay.base.extensions.makeVisible
 import com.picpay.base.extensions.showErrorSnackbar
 import com.picpay.base.presentation.BaseFragment
 import com.picpay.domain.entity.ApiError
@@ -38,13 +37,13 @@ class AgendaFragment: BaseFragment<FragmentAgendaBinding>() {
     }
 
     private fun setupView() {
-        binding.userListProgressBar.visibility = View.VISIBLE
+        binding.userListPb.makeVisible()
     }
 
     private fun setupRecyclerView() {
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 
-        binding.recyclerView.adapter = adapter
+        binding.contactsRv.adapter = adapter
     }
 
     private fun setObservers() {
@@ -62,8 +61,8 @@ class AgendaFragment: BaseFragment<FragmentAgendaBinding>() {
     }
 
     private fun bindEmptyResponse() {
-        binding.userListProgressBar.visibility = View.GONE
-        binding.recyclerView.visibility = View.GONE
+        binding.userListPb.makeGone()
+        binding.contactsRv.makeGone()
 
         requireView().showErrorSnackbar(getString(R.string.empty_data_error))
     }
@@ -75,15 +74,15 @@ class AgendaFragment: BaseFragment<FragmentAgendaBinding>() {
             else -> getString(R.string.unknown_error)
         }
 
-        binding.userListProgressBar.visibility = View.GONE
-        binding.recyclerView.visibility = View.GONE
+        binding.userListPb.makeGone()
+        binding.contactsRv.makeGone()
 
         requireView().showErrorSnackbar(message)
     }
 
     private fun bindSuccessResponse(value: List<User>) {
-        binding.recyclerView.visibility = View.VISIBLE
-        binding.userListProgressBar.visibility = View.GONE
+        binding.contactsRv.makeVisible()
+        binding.userListPb.makeGone()
         adapter.users = value
     }
 }

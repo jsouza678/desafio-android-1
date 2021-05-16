@@ -8,6 +8,7 @@
     <dimen name="larger_margin">32dp</dimen>
     <dimen name="xlarger_margin">48dp</dimen>
 
+    <!-- TEXT SIZES -->
     <dimen name="title_text">28sp</dimen>
 
 </resources>
