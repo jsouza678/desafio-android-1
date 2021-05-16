@@ -37,8 +37,6 @@ class AgendaRepositoryImpl(
                     userResponse.toDatabaseModel()
                 }
                 dao.insertContacts(*responseLocal.toTypedArray())
-/*
-                dao.getContacts().map { it.toDomainModel() }*/
 
                 responseList.map { it.toDomainModel() }
             },
