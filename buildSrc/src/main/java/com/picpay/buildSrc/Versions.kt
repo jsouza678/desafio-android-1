@@ -30,6 +30,7 @@ object Versions {
     const val navigation = "2.3.5"
     const val retrofit = "2.9.0"
     const val okHttp = "4.3.1"
+    const val ktlint = "0.35.0"
     const val picasso = "2.71828"
     const val circleImageView = "3.0.0"
     const val koin = "2.2.0-rc-4"

@@ -131,6 +131,10 @@ object Dependencies {
         )
     }
 
+    object Plugin {
+        const val ktlint = "com.pinterest:ktlint:${Versions.ktlint}"
+    }
+
     object Test {
         private const val jUnit = "junit:junit:${Versions.junit}"
         private const val mockitoCore = "org.mockito:mockito-core:${Versions.mockito}"
