@@ -4,23 +4,29 @@ import com.google.gson.Gson
 import com.picpay.data.contacts.data.remote.PicPayService
 import com.picpay.data.contacts.data.utils.Constants
 import com.picpay.data.di.networkModule
+import com.picpay.data.utils.Constants.INTERCEPTOR_INSTANCE
+import com.picpay.data.utils.Constants.OKHTTP_INSTANCE
+import com.picpay.data.utils.Constants.RETROFIT_INSTANCE
 import com.picpay.desafio.android.BuildConfig
 import com.picpay.desafio.android.utils.Constants.BASE_URL
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
+import org.koin.core.qualifier.named
 import org.koin.test.KoinTest
 import org.koin.test.inject
 import retrofit2.Retrofit
 
 class NetworkModuleTest : KoinTest {
 
-    private val retrofit: Retrofit by inject()
-    private val okHttpClient: OkHttpClient by inject()
+    private val retrofit: Retrofit by inject(named(RETROFIT_INSTANCE))
+    private val okHttpClient: OkHttpClient by inject(named(OKHTTP_INSTANCE))
+    private val interceptor: HttpLoggingInterceptor by inject(named(INTERCEPTOR_INSTANCE))
     private val gson: Gson by inject()
     private val service: PicPayService by inject()
 
@@ -42,6 +48,11 @@ class NetworkModuleTest : KoinTest {
     @Test
     fun `WHEN koin application is started it SHOULD instantiate Retrofit`() {
         Assert.assertNotNull(retrofit)
+    }
+
+    @Test
+    fun `WHEN koin application is started it SHOULD instantiate interceptor`() {
+        Assert.assertNotNull(interceptor)
     }
 
     @Test
