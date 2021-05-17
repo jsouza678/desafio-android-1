@@ -1,3 +1,37 @@
+# Desafio
+[![Kotlin Version](https://img.shields.io/badge/Kotlin-1.4.31-blue.svg)](https://kotlinlang.org)
+[![Gradle](https://img.shields.io/badge/Gradle-6.5-blue?style=flat)](https://gradle.org)
+
+# Características do Projeto
+* 100% [Kotlin](https://kotlinlang.org/)
+* Clean Architecture (modularizado por feature e camadas), para permitir que o app reaja bem a mudanças.
+* MVVM (Model-View-ViewModel)
+* Navigation Component
+* [Android Jetpack](https://developer.android.com/jetpack)
+* CI pipeline ([GitHub Actions](https://github.com/features/actions))
+* Testes Unitários
+* Testes Instrumentados
+* Injeção de dependência (Koin)
+* GIT Flow
+
+# Arquitetura
+
+A divisão dos módulos:
+* app - contém uma classe Application que serve de base para o contexto do DI(Koin);
+
+* agenda - possui a feature lista de contatos;
+
+* data - possui toda a parte de dados locais e remotos da aplicação, assim como as conversões e lógica entre eles;
+
+* domain - módulo que contém as regras de negócio da aplicação. É puramente Kotlin e como está sendo utilizada a Clean Architecture, possui Casos de Uso;
+
+* base - contém classes de base para o projeto;
+
+* buildSrc - módulo que contém todas as dependências e versões do projeto, incluindo seus módulos;
+
+* sharedComponents - possui os componentes e dependências que podem ser compartilhados com o resto do app.
+
+---------------------
 # PicPay - Desafio Android
 
 <img src="https://github.com/mobilepicpay/desafio-android/blob/master/desafio-picpay.gif" width="300"/>
