@@ -40,8 +40,8 @@ class AgendaFragment : BaseFragment<FragmentAgendaBinding>() {
     }
 
     private fun setupRecyclerView() {
-        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         adapter = UserListAdapter()
+        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
         binding.contactsRv.apply {
             binding.contactsRv.adapter = this@AgendaFragment.adapter
         }
