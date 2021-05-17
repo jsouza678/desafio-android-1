@@ -1,4 +1,4 @@
-package com.picpay.agenda.presentation.home
+package com.picpay.agenda.presentation.home.contacts
 
 import android.os.Bundle
 import android.view.View
@@ -83,6 +83,6 @@ class AgendaFragment : BaseFragment<FragmentAgendaBinding>() {
     private fun bindSuccessResponse(value: List<User>) {
         binding.contactsRv.makeVisible()
         binding.userListPb.makeGone()
-        adapter.users = value
+        adapter.submitList(value)
     }
 }

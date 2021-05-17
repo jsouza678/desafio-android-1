@@ -1,4 +1,4 @@
-package com.picpay.agenda.presentation.home
+package com.picpay.agenda.presentation.home.contacts
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

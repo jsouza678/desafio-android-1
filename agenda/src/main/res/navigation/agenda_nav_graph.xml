@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/agendaFragment"
-        android:name="com.picpay.agenda.presentation.home.AgendaFragment"
+        android:name="com.picpay.agenda.presentation.home.contacts.AgendaFragment"
         android:label="AgendaFragment"
         tools:layout="@layout/fragment_agenda"/>
 
