@@ -16,11 +16,9 @@ on:
       - '!release*'
 
 jobs:
-
-  klint:
+  ktlint:
     name: Run ktlint
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
       - name: set up JDK 1.8
@@ -32,8 +30,8 @@ jobs:
 
   unit-tests:
     name: Run tests
+    needs: [ktlint]
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
       - name: set up JDK 1.8
@@ -45,11 +43,10 @@ jobs:
 
   android_tests:
     name: Run instrumented tests
+    needs: [ktlint]
     runs-on: [ macos-latest ]
-
     steps:
       - uses: actions/checkout@v2
-
       - name: Instrumentation Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
