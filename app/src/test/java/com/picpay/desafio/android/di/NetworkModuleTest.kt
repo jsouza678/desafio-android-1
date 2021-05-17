@@ -3,10 +3,10 @@ package com.picpay.desafio.android.di
 import com.google.gson.Gson
 import com.picpay.data.contacts.data.remote.PicPayService
 import com.picpay.data.contacts.data.utils.Constants
+import com.picpay.data.di.networkModule
 import com.picpay.data.utils.Constants.INTERCEPTOR_INSTANCE
 import com.picpay.data.utils.Constants.OKHTTP_INSTANCE
 import com.picpay.data.utils.Constants.RETROFIT_INSTANCE
-import com.picpay.data.di.networkModule
 import com.picpay.desafio.android.BuildConfig
 import com.picpay.desafio.android.utils.Constants.BASE_URL
 import okhttp3.OkHttpClient
