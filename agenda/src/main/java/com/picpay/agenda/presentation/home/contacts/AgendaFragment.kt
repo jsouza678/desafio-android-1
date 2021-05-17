@@ -26,7 +26,6 @@ class AgendaFragment : BaseFragment<FragmentAgendaBinding>() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = UserListAdapter()
         setupView()
         setupRecyclerView()
         setObservers()
@@ -42,8 +41,10 @@ class AgendaFragment : BaseFragment<FragmentAgendaBinding>() {
 
     private fun setupRecyclerView() {
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-
-        binding.contactsRv.adapter = adapter
+        adapter = UserListAdapter()
+        binding.contactsRv.apply {
+            binding.contactsRv.adapter = this@AgendaFragment.adapter
+        }
     }
 
     private fun setObservers() {
