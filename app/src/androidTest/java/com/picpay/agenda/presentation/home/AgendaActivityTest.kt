@@ -1,6 +1,7 @@
 package com.picpay.agenda.presentation.home
 
 import android.content.pm.ActivityInfo
+import androidx.lifecycle.Lifecycle
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBackUnconditionally
 import androidx.test.espresso.assertion.ViewAssertions.matches
@@ -45,6 +46,8 @@ class AgendaActivityTest : KoinTest {
     @Test
     fun shouldDisplayTitle() {
         val expectedTitle = context.getString(R.string.title)
+
+        activityTestRule.scenario.moveToState(Lifecycle.State.RESUMED)
 
         onView(withId(R.id.container_nsv)).check(matches(isDisplayed()))
         onView(withText(expectedTitle)).check(matches(isDisplayed()))

@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
+import com.picpay.agenda.presentation.home.contacts.AgendaViewModel
 import com.picpay.base.extensions.ErrorHandler
 import com.picpay.base.utils.Constants
 import com.picpay.data.contacts.data.remote.response.UserResponse

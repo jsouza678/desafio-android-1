@@ -1,4 +1,4 @@
-package com.picpay.agenda.presentation.home
+package com.picpay.agenda.presentation.home.contacts
 
 import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData

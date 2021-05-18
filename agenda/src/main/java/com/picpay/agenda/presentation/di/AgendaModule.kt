@@ -1,6 +1,6 @@
 package com.picpay.agenda.presentation.di
 
-import com.picpay.agenda.presentation.home.AgendaViewModel
+import com.picpay.agenda.presentation.home.contacts.AgendaViewModel
 import com.picpay.domain.repository.AgendaRepository
 import com.picpay.domain.usecase.GetContactList
 import com.picpay.domain.usecase.GetContactListImpl

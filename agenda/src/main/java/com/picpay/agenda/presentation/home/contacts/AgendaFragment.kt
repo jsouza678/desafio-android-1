@@ -1,4 +1,4 @@
-package com.picpay.agenda.presentation.home
+package com.picpay.agenda.presentation.home.contacts
 
 import android.os.Bundle
 import android.view.View
@@ -26,7 +26,6 @@ class AgendaFragment : BaseFragment<FragmentAgendaBinding>() {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = UserListAdapter()
         setupView()
         setupRecyclerView()
         setObservers()
@@ -41,9 +40,11 @@ class AgendaFragment : BaseFragment<FragmentAgendaBinding>() {
     }
 
     private fun setupRecyclerView() {
+        adapter = UserListAdapter()
         adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-
-        binding.contactsRv.adapter = adapter
+        binding.contactsRv.apply {
+            binding.contactsRv.adapter = this@AgendaFragment.adapter
+        }
     }
 
     private fun setObservers() {
@@ -83,6 +84,6 @@ class AgendaFragment : BaseFragment<FragmentAgendaBinding>() {
     private fun bindSuccessResponse(value: List<User>) {
         binding.contactsRv.makeVisible()
         binding.userListPb.makeGone()
-        adapter.users = value
+        adapter.submitList(value)
     }
 }
