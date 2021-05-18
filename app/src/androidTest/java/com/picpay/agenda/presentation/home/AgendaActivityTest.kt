@@ -21,6 +21,7 @@ import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import org.junit.After
+import org.junit.Before
 import org.junit.Assert
 import org.junit.Rule
 import org.junit.Test
@@ -38,16 +39,30 @@ class AgendaActivityTest : KoinTest {
     private val server = MockWebServer()
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
+    @Before
+    fun setup() {
+        // Getting data from mock server
+        server.dispatcher = openMockServer()
+        server.start(serverPort)
+        server.url("/users")
+
+        activityTestRule.scenario.onActivity {
+            activity = it
+        }
+
+        activityTestRule.scenario.moveToState(Lifecycle.State.RESUMED)
+    }
+
     @After
     fun tearDown() {
         activity = null
+        // Shutting down server
+        server.shutdown()
     }
 
     @Test
     fun shouldDisplayTitle() {
         val expectedTitle = context.getString(R.string.title)
-
-        activityTestRule.scenario.moveToState(Lifecycle.State.RESUMED)
 
         onView(withId(R.id.container_nsv)).check(matches(isDisplayed()))
         onView(withText(expectedTitle)).check(matches(isDisplayed()))
@@ -56,23 +71,17 @@ class AgendaActivityTest : KoinTest {
 
     @Test
     fun shouldDisplayListItem() {
-        // Getting data from mock server
-        server.dispatcher = openMockServer()
-        server.start(serverPort)
-
         // Checking if response data is the same as the expected one
         val response = gson.fromJson<List<User>>(body, object : TypeToken<List<User>>() {}.type)
         Assert.assertEquals(response, FAKE_CONTACTS)
 
-        server.close()
+        val itemCount = getItemCount(R.id.contacts_rv)
+        Assert.assertEquals(response, FAKE_CONTACTS)
+        Assert.assertTrue(itemCount != 0)
     }
 
     @Test
     fun shouldCloseOnBack() {
-        activityTestRule.scenario.onActivity {
-            activity = it
-        }
-
         pressBackUnconditionally()
 
         Assert.assertTrue(activity?.isDestroyed ?: true)
@@ -80,14 +89,6 @@ class AgendaActivityTest : KoinTest {
 
     @Test
     fun shouldMaintainDataAfterRotation() {
-        // Getting data from mock server
-        server.dispatcher = openMockServer()
-        server.start(serverPort)
-
-        activityTestRule.scenario.onActivity {
-            activity = it
-        }
-
         val response = gson.fromJson<List<User>>(body, object : TypeToken<List<User>>() {}.type)
 
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
@@ -96,26 +97,14 @@ class AgendaActivityTest : KoinTest {
         val itemCount = getItemCount(R.id.contacts_rv)
         Assert.assertEquals(response, FAKE_CONTACTS)
         Assert.assertTrue(itemCount != 0)
-
-        server.close()
     }
 
     @Test
     fun shouldMaintainDataAfterRotationData() {
-        // Getting data from mock server
-        server.dispatcher = openMockServer()
-        server.start(serverPort)
-
-        activityTestRule.scenario.onActivity {
-            activity = it
-        }
-
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
 
         // Testing if the first element visible is the same after the rotation
         RecyclerViewUtils.atPosition(0, withText(FAKE_CONTACTS[0].name))
-
-        server.close()
     }
 
     private fun openMockServer() = object : Dispatcher() {
