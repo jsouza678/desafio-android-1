@@ -53,9 +53,10 @@ class AgendaActivityTest : KoinTest {
 
     @After
     fun tearDown() {
-        activity = null
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         // Shutting down server
         server.shutdown()
+        activity = null
     }
 
     @Test
