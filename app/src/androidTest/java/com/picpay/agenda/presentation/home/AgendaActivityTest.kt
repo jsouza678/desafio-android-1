@@ -41,16 +41,14 @@ class AgendaActivityTest : KoinTest {
 
     @Before
     fun setup() {
+        activityTestRule.scenario.moveToState(Lifecycle.State.RESUMED)
+        activityTestRule.scenario.onActivity {
+            activity = it
+        }
         // Getting data from mock server
         server.dispatcher = openMockServer()
         server.start(serverPort)
         server.url("/users")
-
-        activityTestRule.scenario.onActivity {
-            activity = it
-        }
-
-        activityTestRule.scenario.moveToState(Lifecycle.State.RESUMED)
     }
 
     @After
