@@ -3,6 +3,7 @@ name: DefaultWorkflow CI
 on:
   push:
     branches:
+      - 'revert/*'
       - 'feat/*'
       - 'feat/**'
       - 'refact/*'

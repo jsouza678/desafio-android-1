@@ -22,6 +22,7 @@ import okhttp3.mockwebserver.MockWebServer
 import okhttp3.mockwebserver.RecordedRequest
 import org.junit.After
 import org.junit.Assert
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.koin.core.component.KoinApiExtension
@@ -38,8 +39,17 @@ class AgendaActivityTest : KoinTest {
     private val server = MockWebServer()
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
 
+    @Before
+    fun setup() {
+        // Getting data from mock server
+        server.dispatcher = openMockServer()
+        server.start(serverPort)
+        server.url("/users")
+    }
+
     @After
     fun tearDown() {
+        server.shutdown()
         activity = null
     }
 
@@ -56,15 +66,9 @@ class AgendaActivityTest : KoinTest {
 
     @Test
     fun shouldDisplayListItem() {
-        // Getting data from mock server
-        server.dispatcher = openMockServer()
-        server.start(serverPort)
-
         // Checking if response data is the same as the expected one
         val response = gson.fromJson<List<User>>(body, object : TypeToken<List<User>>() {}.type)
         Assert.assertEquals(response, FAKE_CONTACTS)
-
-        server.close()
     }
 
     @Test
@@ -80,10 +84,6 @@ class AgendaActivityTest : KoinTest {
 
     @Test
     fun shouldMaintainDataAfterRotation() {
-        // Getting data from mock server
-        server.dispatcher = openMockServer()
-        server.start(serverPort)
-
         activityTestRule.scenario.onActivity {
             activity = it
         }
@@ -96,16 +96,10 @@ class AgendaActivityTest : KoinTest {
         val itemCount = getItemCount(R.id.contacts_rv)
         Assert.assertEquals(response, FAKE_CONTACTS)
         Assert.assertTrue(itemCount != 0)
-
-        server.close()
     }
 
     @Test
     fun shouldMaintainDataAfterRotationData() {
-        // Getting data from mock server
-        server.dispatcher = openMockServer()
-        server.start(serverPort)
-
         activityTestRule.scenario.onActivity {
             activity = it
         }
@@ -114,8 +108,6 @@ class AgendaActivityTest : KoinTest {
 
         // Testing if the first element visible is the same after the rotation
         RecyclerViewUtils.atPosition(0, withText(FAKE_CONTACTS[0].name))
-
-        server.close()
     }
 
     private fun openMockServer() = object : Dispatcher() {
