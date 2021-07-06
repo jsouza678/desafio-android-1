@@ -4,7 +4,6 @@ buildscript {
     repositories {
         google()
         jcenter()
-
     }
 
     configurations {
@@ -15,7 +14,12 @@ buildscript {
         Dependencies.Classpath.classPathList.forEach { dependency ->
             classpath dependency
         }
+        classpath 'com.google.gms:google-services:4.3.8'
     }
+}
+
+plugins {
+    id "org.sonarqube" version "3.3"
 }
 
 allprojects {
@@ -45,4 +49,12 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     main = "com.pinterest.ktlint.Main"
     classpath = configurations.ktlint
     args "-F", "**/*.kt", "!**/bin/**/*.kt", "!**/*InstrumentedTest.kt", "--reporter=plain?group_by_file&color", "no-wildcard-imports = false"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "jsouza678_desafio-android-1"
+        property "sonar.organization", "jsouza678"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }

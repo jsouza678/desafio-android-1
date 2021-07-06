@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "6955078579",
+    "project_id": "agenda-94a2f",
+    "storage_bucket": "agenda-94a2f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6955078579:android:5feff1fc545224414d31c6",
+        "android_client_info": {
+          "package_name": "com.picpay.agenda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "6955078579-plfrvomq9tc82mon38t5bv9arbci2u5v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCm46ImEjm90faQAZw-S6MpruGttyK2Ay8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "6955078579-plfrvomq9tc82mon38t5bv9arbci2u5v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
