@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "334968912431",
+    "project_id": "contactsagenda-4f3bf",
+    "storage_bucket": "contactsagenda-4f3bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334968912431:android:891e8860d6a319533764da",
+        "android_client_info": {
+          "package_name": "com.picpay.desafio.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334968912431-tpf12iq5hfgbircqtjfsmt899u0tb7h9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1FcTuaWkyWQIOWRpfCM5fzqFnMhaWbtM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334968912431-tpf12iq5hfgbircqtjfsmt899u0tb7h9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
