@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<defaultsMap>
     <entry>
         <key>welcome_message</key>
-        <value>Contatos</value>
+        <value>Contatos 123</value>
     </entry>
-    <entry>
-        <key>loading_phrase</key>
-        <value>Fetching config…</value>
-    </entry>
-</defaultsMap>

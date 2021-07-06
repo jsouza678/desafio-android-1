@@ -124,7 +124,7 @@ class AgendaViewModelTest {
 
             viewModel.getContactData()
             val flowResult = useCase.getContacts().toList()
-
+            //todo verify in order
             verify(observer, times(1)).onChanged(ResponseHandler.Loading)
             verify(observer, atLeastOnce()).onChanged(GENERIC_ERROR_RESPONSE)
             Assert.assertEquals(flowResult.first(), ResponseHandler.Loading)
